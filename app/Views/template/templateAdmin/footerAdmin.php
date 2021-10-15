@@ -12,6 +12,8 @@
       </div>
       <!-- page-body-wrapper ends -->
     </div>
+    <!-- datatables -->
+   
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="<?php base_url()?>/assets/vendors/js/vendor.bundle.base.js"></script>
@@ -28,5 +30,6 @@
     <script src="<?php base_url()?>/assets/js/dashboard.js"></script>
     <script src="<?php base_url()?>/assets/js/todolist.js"></script>
     <!-- End custom js for this page -->
+
   </body>
 </html>

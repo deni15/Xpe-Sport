@@ -25,9 +25,9 @@ class ProdukController extends BaseController
         $session = session()->get('username');
 		if(!empty($session)){
 			$data['title'] = 'Master Produk';
-				   echo view('template/templateAdmin/headerAdmin',$data);
+				   echo view('template/templateAdmin/head',$data);
 				   echo view('content/produk/dataProduk',$data);
-				   echo view('template/templateAdmin/footerAdmin');
+				   echo view('template/templateAdmin/foot');
 		}else{
 		session()->setFlashdata('success', 'Waktu Anda telah berakhir, silahkan Masuk kembali');
 			return redirect()->to('/');
@@ -40,9 +40,9 @@ class ProdukController extends BaseController
         $session = session()->get('username');
 		if(!empty($session)){
 			$data['title'] = 'Tambah Data Produk';
-				   echo view('template/templateAdmin/headerAdmin',$data);
+				   echo view('template/templateAdmin/head',$data);
 				   echo view('content/produk/tambahData',$data);
-				   echo view('template/templateAdmin/footerAdmin');
+				   echo view('template/templateAdmin/foot');
 		}else{
 		session()->setFlashdata('success', 'Waktu Anda telah berakhir, silahkan Masuk kembali');
 			return redirect()->to('/');
@@ -77,9 +77,9 @@ class ProdukController extends BaseController
             $session = session()->get('username');
 			if(!empty($session)){
 				$data1['title'] = 'Tambah Data Produk';
-					echo view('template/templateAdmin/headerAdmin',$data1);
+					echo view('template/templateAdmin/head',$data1);
 					echo view('content/produk/tambahData',$data1);
-					echo view('template/templateAdmin/footerAdmin');
+					echo view('template/templateAdmin/foot');
 			}else{
 			session()->setFlashdata('success', 'Waktu Anda telah berakhir, silahkan Masuk kembali');
 				return redirect()->to('/');

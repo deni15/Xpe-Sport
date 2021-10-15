@@ -24,9 +24,9 @@ class PenggunaController extends BaseController
         $session = session()->get('username');
 		if(!empty($session)){
 			$data['title'] = 'Dashboard';
-				   echo view('template/templateAdmin/headerAdmin',$data);
+				   echo view('template/templateAdmin/head',$data);
 				   echo view('content/pengguna/dataPengguna',$data);
-				   echo view('template/templateAdmin/footerAdmin');
+				   echo view('template/templateAdmin/foot');
 		}else{
 		session()->setFlashdata('success', 'Waktu Anda telah berakhir, silahkan Masuk kembali');
 			return redirect()->to('/');
@@ -39,9 +39,9 @@ class PenggunaController extends BaseController
         $session = session()->get('username');
 		if(!empty($session)){
 			$data['title'] = 'Tambah Data Pengguna';
-				   echo view('template/templateAdmin/headerAdmin',$data);
+				   echo view('template/templateAdmin/head',$data);
 				   echo view('content/pengguna/tambahData',$data);
-				   echo view('template/templateAdmin/footerAdmin');
+				   echo view('template/templateAdmin/foot');
 		}else{
 		session()->setFlashdata('success', 'Waktu Anda telah berakhir, silahkan Masuk kembali');
 			return redirect()->to('/');
@@ -80,9 +80,9 @@ class PenggunaController extends BaseController
             $session = session()->get('username');
 			if(!empty($session)){
 				$data1['title'] = 'Tambah Data Pengguna';
-					echo view('template/templateAdmin/headerAdmin',$data1);
+					echo view('template/templateAdmin/head',$data1);
 					echo view('content/pengguna/tambahData',$data1);
-					echo view('template/templateAdmin/footerAdmin');
+					echo view('template/templateAdmin/foot');
 			}else{
 			session()->setFlashdata('success', 'Waktu Anda telah berakhir, silahkan Masuk kembali');
 				return redirect()->to('/');
@@ -123,9 +123,9 @@ class PenggunaController extends BaseController
 		$session = session()->get('username');
 			if(!empty($session)){
 				$data['title'] = 'Tambah Data Pengguna';
-					echo view('template/templateAdmin/headerAdmin',$data);
+					echo view('template/templateAdmin/head',$data);
 					echo view('content/pengguna/ubahData',$data);
-					echo view('template/templateAdmin/footerAdmin');
+					echo view('template/templateAdmin/foot');
 			}else{
 			session()->setFlashdata('success', 'Waktu Anda telah berakhir, silahkan Masuk kembali');
 				return redirect()->to('/');
@@ -170,9 +170,9 @@ class PenggunaController extends BaseController
             $session = session()->get('username');
 			if(!empty($session)){
 				$data1['title'] = 'Tambah Data Pengguna';
-					echo view('template/templateAdmin/headerAdmin',$data1);
+					echo view('template/templateAdmin/head',$data1);
 					echo view('content/pengguna/tambahData',$data1);
-					echo view('template/templateAdmin/footerAdmin');
+					echo view('template/templateAdmin/foot');
 			}else{
 			session()->setFlashdata('success', 'Waktu Anda telah berakhir, silahkan Masuk kembali');
 				return redirect()->to('/');
@@ -220,9 +220,9 @@ class PenggunaController extends BaseController
 		$session = session()->get('username');
 			if(!empty($session)){
 				$data['title'] = 'Detail Data Pengguna';
-					echo view('template/templateAdmin/headerAdmin',$data);
+					echo view('template/templateAdmin/head',$data);
 					echo view('content/pengguna/tampilData',$data);
-					echo view('template/templateAdmin/footerAdmin');
+					echo view('template/templateAdmin/foot');
 			}else{
 			session()->setFlashdata('success', 'Waktu Anda telah berakhir, silahkan Masuk kembali');
 				return redirect()->to('/');

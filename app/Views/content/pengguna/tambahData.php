@@ -95,3 +95,25 @@
             </div>
         </div>
     </div>
+
+
+    <!-- <script src=""></script>   //load library -->
+    <script src="">
+          $( document ).ready(function() {
+        validate();
+    });
+
+    function validate(){
+        $("form[name='post_data']").validate({
+            rules: {
+                nama_layanan: "required",
+            },
+            messages: {
+                nama_layanan: "Kolom nama Layanan tidak boleh kosong",
+            },
+            submitHandler: function(form) {
+            form.submit();
+            }
+        });
+    }
+    </script>
