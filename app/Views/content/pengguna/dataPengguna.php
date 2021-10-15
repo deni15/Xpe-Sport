@@ -7,8 +7,7 @@
                     <!-- breadcum -->
                     <div aria-label="breadcrumb border-0">
                       <ol class="breadcrumb border-0 p-0">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="#">Pengguna</a></li>
+                        <li class="breadcrumb-item"><a href="<?php base_url()?>/home">Dashboard</a></li>
                         <li class="breadcrumb-item active" aria-current="page">List Pengguna</li>
                       </ol>
                     </div>
