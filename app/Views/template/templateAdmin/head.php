@@ -168,7 +168,7 @@
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/PenggunaController">Data Pengguna</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/typography.html">Report Data Pengguna</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/typography.html">Laporan Data Pengguna</a></li>
                 </ul>
               </div>
             </li>
@@ -179,48 +179,120 @@
               <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
                 <span class="menu-title">Produk</span>
                 <i class="menu-arrow"></i>
-                <i class="mdi mdi-cart-plus menu-icon"></i>
+                <i class="mdi mdi-cart-car menu-icon"></i>
               </a>
               <div class="collapse" id="general-pages">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Data Produk </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Report Data Produk </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Laporan Data Produk </a></li>
                 </ul>
               </div>
             </li>
             <?php endif ; ?>
             <?php if(session()->get('id_groups') == 'Operator') : ?>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#ui-basi" aria-expanded="false" aria-controls="ui-basic">
+              <a class="nav-link" data-toggle="collapse" href="#sales5" aria-expanded="false" aria-controls="sales5">
                 <span class="menu-title">Transaksi</span>
                 <i class="menu-arrow"></i>
-                <i class="mdi mdi-coin menu-icon"></i>
+                <i class="mdi mdi-cash-usd menu-icon"></i>
               </a>
-              <div class="collapse" id="ui-basi">
+              <div class="collapse" id="sales5">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/buttons.html">Data Transaksi</a></li>
                   <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/buttons.html">Data Transaksi Cash</a></li>
                   <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/buttons.html">Data Transaksi Kredit</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/typography.html">Report Data Transaksi</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/typography.html">Laporan Data Transaksi</a></li>
                 </ul>
               </div>
             </li>
             <?php endif ; ?>
             <?php if(session()->get('id_groups') == 'Salesman') : ?>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
-                <span class="menu-title"></span>
+              <a class="nav-link" data-toggle="collapse" href="#sales2" aria-expanded="false" aria-controls="sales2">
+                <span class="menu-title">Produk Tenor</span>
                 <i class="menu-arrow"></i>
-                <i class="mdi mdi-cart-plus menu-icon"></i>
+                <i class="mdi mdi-credit-card-multiple menu-icon"></i>
               </a>
-              <div class="collapse" id="general-pages">
+              <div class="collapse" id="sales2">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Data Produk </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Report Data Produk </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Tenor Cash </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Tenor Kredit </a></li>
                 </ul>
               </div>
             </li>
             <?php endif ; ?>
+            <?php if(session()->get('id_groups') == 'Salesman') : ?>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#sales1" aria-expanded="false" aria-controls="sales1">
+                <span class="menu-title">Penjualan</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-cash-usd menu-icon"></i>
+              </a>
+              <div class="collapse" id="sales1">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Penjualan Sales </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Laporan Penjualan </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Histori Penjualan </a></li>
+                </ul>
+              </div>
+            </li>
+            <?php endif ; ?>
+            <?php if(session()->get('id_groups') == 'Branch Manager') : ?>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#branch4" aria-expanded="false" aria-controls="branch4">
+                <span class="menu-title">Penjualan</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-cart-outline menu-icon"></i>
+              </a>
+              <div class="collapse" id="branch4">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Data Penjualan </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Penjualan Sales </a></li>
+                </ul>
+              </div>
+            </li>
+            <?php endif ; ?>
+            <?php if(session()->get('id_groups') == 'Branch Manager') : ?>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#branch2" aria-expanded="false" aria-controls="branch2">
+                <span class="menu-title">Transaksi</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-cash-usd menu-icon"></i>
+              </a>
+              <div class="collapse" id="branch2">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Penjualan Cash </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Penjualan Kredit </a></li>
+                </ul>
+              </div>
+            </li>
+            <?php endif ; ?>
+            <?php if(session()->get('id_groups') == 'Branch Manager') : ?>
+              <li class="nav-item">
+                <a class="nav-link" href="<?php base_url()?>/nana">
+                  <span class="menu-title">Profit</span>
+                  <i class="mdi mdi-chart-line menu-icon"></i>
+                </a>
+              </li>
+              <?php endif ; ?>
+              <?php if(session()->get('id_groups') == 'Branch Manager') : ?>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#branch1" aria-expanded="false" aria-controls="branch1">
+                  <span class="menu-title">Laporan</span>
+                  <i class="menu-arrow"></i>
+                  <i class="mdi mdi-clipboard-outline menu-icon"></i>
+                </a>
+                <div class="collapse" id="branch1">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Laporan Data Pengguna </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Laporan Data Produk </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Laporan Data Penjualan Cash </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Laporan Data Penjualan Kredit </a></li>
+                  </ul>
+                </div>
+              </li>
+              <?php endif ; ?>
+            
           </ul>
         </nav>
         <!-- partial -->
