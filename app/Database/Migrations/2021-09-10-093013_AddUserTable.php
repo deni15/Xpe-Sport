@@ -17,23 +17,47 @@ class AddUserTable extends Migration
                 'no_telp'       =>  '089659941572',
                 'tanggal_lahir' =>  '2001-04-15',
                 'alamat'        =>  'Jl.Mawar No. 70 Wonoayu Sidoarjo',
-				'password'		=>	'deni123',
+				'password'		=>	'123123',
                 'email'         =>  'mihamaddeni@gmail.com',
 				'id_groups'		=>	'Administrator',
                 'created_at' => Time::now()
             ],
             [
-                'username'      =>  'Novinda',
+                'username'      =>  'operator',
 				'fullname'      =>  'Novinda Suci',
                 'jenis_kelamin' =>  'Perumpuan',
                 'no_telp'       =>  '08787654321',
                 'tanggal_lahir' =>  '2001-11-25',
-				'password'		=>	'novinda123',
+				'password'		=>	'123123',
                 'alamat'        =>  'Jl.Melati No. 150 Buduran Sidoarjo',
                 'email'         =>  'novindasuci@gmail.com',
 				'id_groups'		=>	'Operator',
                 'created_at' => Time::now()
-            ]
+            ],
+            [
+                'username'      =>  'sales',
+				'fullname'      =>  'srimulat',
+                'jenis_kelamin' =>  'Perumpuan',
+                'no_telp'       =>  '08787654321',
+                'tanggal_lahir' =>  '2001-11-25',
+				'password'		=>	'123123',
+                'alamat'        =>  'Jl.Melati No. 150 Buduran Sidoarjo',
+                'email'         =>  'nandi@gmail.com',
+				'id_groups'		=>	'Salesman', //Branch Manager
+                'created_at' => Time::now()
+            ],
+            [
+                'username'      =>  'manager',
+				'fullname'      =>  'tari',
+                'jenis_kelamin' =>  'Perumpuan',
+                'no_telp'       =>  '08787654321',
+                'tanggal_lahir' =>  '2001-11-25',
+				'password'		=>	'123123',
+                'alamat'        =>  'Jl.Melati No. 150 Buduran Sidoarjo',
+                'email'         =>  'rii123@gmail.com',
+				'id_groups'		=>	'Branch Manager', //Branch Manager
+                'created_at' => Time::now()
+            ],
         ];
         $this->db->table('users')->insertBatch($data);
 	}
