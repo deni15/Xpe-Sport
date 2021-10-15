@@ -1,38 +1,38 @@
 <div class="content-wrapper">
-<div class="row">
+      <div class="row">
               <div class="col-12 grid-margin">
-                <div class="card">
-                  <div class="card-body">
-                  <?php if (!empty(session()->getFlashdata('success'))) : ?>
+                <div class="card mb-3">
+                  <div class="card-body p-4">
+                    <h1 class="card-title">Data Produk</h1>
+                    <!-- breadcum -->
+                    <div aria-label="breadcrumb border-0">
+                      <ol class="breadcrumb border-0 p-0">
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="#">Produk</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">List Produk</li>
+                      </ol>
+                    </div>
+                    <!-- end breadcum -->
+                    <?php if (!empty(session()->getFlashdata('success'))) : ?>
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <?php echo session()->getFlashdata('success'); ?>
                     </div>
-                <?php endif; ?>
-                    <h4 class="card-title">Data Produk</h4>
-                    <div class="row mt-2 pr-4">
-                            <div class="col-lg-3">
-                            <form action="<?= base_url('Produk/search') ?>" method="post">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search by data details" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-sm btn-gradient-primary" type="submit">Search</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                                </div>
-                                  <div class="col-lg-5">
-                                </div>
-                              <div class="col-lg-2">
-                                  <a href="<?= site_url('Produk/print') ?>" class="btn btn-gradient-info btn-lg form-control"><i class="mdi mdi-printer menu-icon"></i></a>
-                              </div>
+                    <?php endif; ?>
+                  </div>
+                </div>
+
+                <div class="card pl-2">
+                  <div class="card-body">
+                    <div class="row">
                             <div class="col-lg-2">
-                              <a href="<?= site_url('ProdukController/create') ?>" class="btn btn-gradient-primary btn-lg form-control"><i class="mdi mdi-plus menu-icon"></i><i class="mdi mdi-account menu-icon"></i></a>
-                            </div>
+                              <a href="<?= site_url('ProdukController/create') ?>" class="btn btn-primary btn-md form-control"><i class="mdi mdi-plus menu-icon"></i><i class="mdi mdi-account menu-icon"></i></a>
+                                </div>
+                                  <div class="col-lg-10">
+                                </div>
                         </div>
-                    <div class="table-responsive">
-                      <table class="table">
+                        <hr>
+                    <div style="margin-left:30px;">
+                      <table class="ui celled table text-center" style="width:100%" id="DataT">
                         <thead>
                           <tr>
                             <th> No </th>
@@ -57,11 +57,11 @@
                                 <td><?= $row->tahun_buat ?></td>
                                  <td>
                                <div class="d-flex justify-content-center d-inline">
-                                    <a href="/produk/show/<?= $row->id?>" class="btn btn-gradient-primary btn-sm"> <i class="mdi mdi-file-document"></i></a> &nbsp;&nbsp;
-                                    <a href="/produk/edit/<?= $row->id?>" class="btn btn-gradient-warning btn-sm"> <i class="mdi mdi-pencil"></i></a> &nbsp;&nbsp;
+                                    <a href="/produk/show/<?= $row->id?>" class="btn btn-primary btn-sm"> <i class="mdi mdi-file-document"></i></a> &nbsp;&nbsp;
+                                    <a href="/produk/edit/<?= $row->id?>" class="btn btn-secondary btn-sm"> <i class="mdi mdi-pencil"></i></a> &nbsp;&nbsp;
                                     
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-gradient-danger btn-sm" data-toggle="modal" data-target="#exampleModal<?= $row->id?>">
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal<?= $row->id?>">
                                     <i class="mdi mdi-delete-forever"></i>
                                     </button>
 
@@ -97,9 +97,15 @@
                           <?php endforeach ;?>
                         </tbody>
                       </table>
-                    </div>
+                      </div>
                   </div>
                 </div>
               </div>
           </div>
-</div>
+        </div>
+
+<script>
+  $(document).ready(function() {
+    $('#DataT').DataTable();
+} );
+</script>
