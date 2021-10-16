@@ -119,10 +119,22 @@
     function validate(){
         $("form[name='post_data']").validate({
             rules: {
-                nama_layanan: "required",
+                gambar: "required",
+                fullname: "required",
+                username: "required",
+                alamat: "required",
+                no_telp: "required",
+                password: "required",
+                email: "required",
             },
             messages: {
-                nama_layanan: "Kolom nama Layanan tidak boleh kosong",
+                gambar: "Isi terlebih dahulu gambar anda",
+                fullname: "Kolom nama pengguna tidak boleh kosong",
+                username: "Kolom username tidak boleh kosong",
+                alamat: "Kolom alamat tidak boleh kosong",
+                no_telp: "Kolom nomor telephone tidak boleh kosong",
+                password: "Kolom password tidak boleh kosong",
+                email: "Kolom email tidak boleh kosong",
             },
             submitHandler: function(form) {
             form.submit();
