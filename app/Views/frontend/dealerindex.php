@@ -97,7 +97,7 @@
     <!---------Navbar------->
     <div class="shadow">
         <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top sticky">
-            <a class="navbar-brand" href="#" style="font-size:x-large;"><img src="img/xp.png" style="height: 60px; width:auto"></a>
+            <a class="navbar-brand" href="#" style="font-size:x-large;"><img src="<?php base_url() ?>/assets/images/img/xp.png" style="height: 60px; width:auto"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -136,8 +136,8 @@
 
                 </ul>
                 <span class="navbar-text">
-                    <a href="news.html">
-                        <img src="img/news.png" style="width: 35px;">
+                    <a href="#">
+                        <img src="<?php base_url() ?>/assets/images/img/news.png" style="width: 35px;">
                     </a>
                 </span>
             </div>
@@ -214,7 +214,7 @@
                         </center>
                         <hr>
                         <p class="card-text"><img src="<?php base_url() ?>/assets/images/img/social-media.png" style="width: 30px;height: 33px;"> @XPE_sport<br><br>
-                            <img src="img/fb.png" style="width: 30px;height: 33px;"> @XPEsport Official
+                            <img src="<?php base_url() ?>/assets/images/img/fb.png" style="width: 30px;height: 33px;"> @XPEsport Official
                         </p>
 
                     </div>
