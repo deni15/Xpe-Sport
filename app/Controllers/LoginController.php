@@ -62,6 +62,6 @@ class LoginController extends BaseController
 	function logout()
     {
         session()->destroy();
-        return redirect()->to('/');
+        return redirect()->to('/login');
     }
 }

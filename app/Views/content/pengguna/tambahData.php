@@ -1,9 +1,22 @@
 <div class="content-wrapper">
-        <div class="col-12 grid-margin stretch-card">
+        <div class="col-12 grid-margin">
+            <div class="card mb-3">
+                    <div class="card-body p-4">
+                        <h1 class="card-title">Form Tambah Data Pengguna</h1>
+                        <!-- breadcum -->
+                        <div aria-label="breadcrumb border-0">
+                        <ol class="breadcrumb border-0 p-0">
+                            <li class="breadcrumb-item"><a href="<?php base_url()?>/home">Dashboard</a></li>
+                            <li class="breadcrumb-item" aria-current="page"><a href="<?php base_url()?>/PenggunaController">List Pengguna</a></li>
+                            <li class="breadcrumb-item active" >Tambah Data</li>
+                        </ol>
+                        </div>
+                        <!-- end breadcum -->
+                    </div>
+                </div>
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-head">Form Tambah Data Pengguna</h3>
-                    <div class="row mt-3">
+                    <div class="row">
                         <div class="col-lg-7">
                             <!--  -->
                             
