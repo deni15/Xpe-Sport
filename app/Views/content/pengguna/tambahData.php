@@ -125,7 +125,10 @@
                 alamat: "required",
                 no_telp: "required",
                 password: "required",
-                email: "required",
+                email: { required: true,
+                         email: true,
+                         accept:"[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}" },
+                },
             },
             messages: {
                 gambar: "Isi terlebih dahulu gambar anda",
