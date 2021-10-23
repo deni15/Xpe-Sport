@@ -78,3 +78,36 @@
             </div>
         </div>
     </div>
+
+    <script src="">
+          $( document ).ready(function() {
+        validate();
+    });
+
+    function validate(){
+        $("form[name='post_data']").validate({
+            rules: {
+                gambar: "required",
+                nama_produk: "required",
+                type_produk: "required",
+                harga:{
+                        required: true,
+                        number: true
+                 },
+                stok: "required",
+                tahun_buat: "required",
+            },
+            messages: {
+                gambar: "Isi terlebih dahulu gambar anda",
+                nama_produk: "Nama produk tidak boleh kosong",
+                type_produk: "Type Produk tidak boleh kosong",
+                harga: "Isi hanya dengan angka",
+                stok: "Kolom stok tidak boleh kosong",
+                tahun_buat: "Kolom tahun pembuatan tidak boleh kosong",
+            },
+            submitHandler: function(form) {
+            form.submit();
+            }
+        });
+    }
+    </script>
