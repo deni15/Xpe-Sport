@@ -24,6 +24,7 @@
     <!-- endinject -->
     <link rel="stylesheet" href="<?php base_url()?>/assets/css/style.css">
     <link rel="stylesheet" href="<?php base_url()?>/assets/vendors/mdi/css/materialdesignicons.min.css">
+    
     <!-- End layout styles -->
     <!-- Layout styles -->
     
@@ -168,7 +169,7 @@
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/PenggunaController">Data Pengguna</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/typography.html">Laporan Data Pengguna</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ReportController/reportPengguna">Laporan Data Pengguna</a></li>
                 </ul>
               </div>
             </li>
@@ -184,7 +185,7 @@
               <div class="collapse" id="general-pages">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Data Produk </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Laporan Data Produk </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ReportController/reportProduk"> Laporan Data Produk </a></li>
                 </ul>
               </div>
             </li>
@@ -198,6 +199,7 @@
               </a>
               <div class="collapse" id="sales5">
                 <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/TransaksiController">Transaksi Pembelian</a></li>
                   <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/buttons.html">Data Transaksi</a></li>
                   <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/buttons.html">Data Transaksi Cash</a></li>
                   <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/buttons.html">Data Transaksi Kredit</a></li>
@@ -215,8 +217,8 @@
               </a>
               <div class="collapse" id="sales2">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Tenor Cash </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Tenor Kredit </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#"> Tenor Cash </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#"> Tenor Kredit </a></li>
                 </ul>
               </div>
             </li>
@@ -230,9 +232,9 @@
               </a>
               <div class="collapse" id="sales1">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Penjualan Sales </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Laporan Penjualan </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Histori Penjualan </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#"> Penjualan Sales </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#"> Laporan Penjualan </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#"> Histori Penjualan </a></li>
                 </ul>
               </div>
             </li>
@@ -246,8 +248,8 @@
               </a>
               <div class="collapse" id="branch4">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Data Penjualan </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Penjualan Sales </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#"> Data Penjualan </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#"> Penjualan Sales </a></li>
                 </ul>
               </div>
             </li>
@@ -261,8 +263,8 @@
               </a>
               <div class="collapse" id="branch2">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Penjualan Cash </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Penjualan Kredit </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#"> Penjualan Cash </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#"> Penjualan Kredit </a></li>
                 </ul>
               </div>
             </li>
@@ -284,10 +286,10 @@
                 </a>
                 <div class="collapse" id="branch1">
                   <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Laporan Data Pengguna </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Laporan Data Produk </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Laporan Data Penjualan Cash </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Laporan Data Penjualan Kredit </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ReportController/reportPengguna"> Laporan Data Pengguna </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ReportController/reportProduk"> Laporan Data Produk </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="#"> Laporan Data Penjualan Cash </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="#"> Laporan Data Penjualan Kredit </a></li>
                   </ul>
                 </div>
               </li>
