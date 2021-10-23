@@ -235,7 +235,7 @@
             <div class="col-5">
 
                 <center>
-                    <p style=" font-size: xx-large;"><span data-toggle="tooltip" title="Layanan Service"><b>Service</b> </span> <img src="img/kunci.png" style="width: 35px;height: 40px;"></p>
+                    <p style=" font-size: xx-large;"><span data-toggle="tooltip" title="Layanan Service"><b>Service</b> </span> <img src="<?php base_url() ?>/assets/images/img/kunci.png" style="width: 35px;height: 40px;"></p>
 
                     <hr style="background-color: white;width: 120px;">
                     <button type="button" href="#service" data-toggle="modal" class="btn btn-danger btn-lg" style="width: 170px; data-toggle: tooltip" data-placement="top" data-html="true" title="
@@ -252,14 +252,14 @@
             </div>
 
             <div class="col-7">
-                <img src="img/toyota/alp.jpg" style="height: 500px;width: auto; border-radius:12px;">
+                <img src="<?php base_url() ?>/assets/images/img/toyota/alp.jpg" style="height: 500px;width: auto; border-radius:12px;">
             </div>
         </div>
         <br>
         <br>
         <div class="jumbotron bg-light">
             <center>
-                <img src="img/logo fix-01.png" style="width: 45px;height: 50px;">
+                <img src="<?php base_url() ?>/assets/images/img/logo fix-01.png" style="width: 45px;height: 50px;">
                 <hr>
 
                 <div class="row">
@@ -292,7 +292,7 @@
             <!--bawah-->
 
             <center>
-                <img src="img/xp.png" style="width:130px" height="70px">
+                <img src="<?php base_url() ?>/assets/images/img/xp.png" style="width:130px" height="70px">
                 <p style="font-size: 11px; ">
                     XPE Sport - Holding company - A company under Dutch law, having its official seat in Amsterdam,<br>
                     the Netherlands and its corporate address at Via Abetone Inferiore No. 4, I-41053 Maranello (MO),<br><br>
@@ -304,7 +304,7 @@
 
                     <b>Copyright 2020 - All rights reserved</b>
                 </p>
-                <img src="img/logo fix-01.png" style="width: 90px" height="80px">
+                <img src="<?php base_url() ?>/assets/images/img/logo fix-01.png" style="width: 90px" height="80px">
             </center>
         </div>
     </div>
@@ -317,7 +317,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content" style="background-color:whitesmoke;">
                 <div class="modal-header bg-primary">
-                    <img src="img/logoo.png" style="width: 30px;">
+                    <img src="<?php base_url() ?>/assets/images/img/logoo.png" style="width: 30px;">
                     <h5 class="modal-title" id="staticBackdropLabel">Service</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
