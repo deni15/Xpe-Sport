@@ -10,4 +10,5 @@ class DashboardController extends BaseController
 	{
 		echo view('frontend/dealerindex');
 	}
+
 }

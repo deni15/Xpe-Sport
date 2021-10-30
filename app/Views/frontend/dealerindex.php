@@ -87,6 +87,18 @@
             top: 0;
             width: 100%;
         }
+
+        .card{
+            border-radius : 15 px;
+            box-shadow: inset 3px 3px 4px rgba(0,0,0,0.4);
+            border: 1px solid grey;
+            padding: 10px;
+        }
+
+        .p{
+        padding-top: 10px;
+        padding-bottom: -4px;
+        }
     </style>
 
 
@@ -124,7 +136,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#service" data-toggle="modal" style="font-size: large;"><b>Service</b></a>
+                        <a class="nav-link" href="<?php base_url() ?>/about" data-toggle="modal" style="font-size: large;"><b>About</b></a>
                     </li>
 
                     <li class="nav-item">
@@ -182,6 +194,86 @@
         </div>
 
     </div>
+
+    <div class="jumbotron bg-light">
+    <div class="row">
+      <div class="col-4">
+      <div class="w3-card-4 card">
+        <img src="<?php base_url() ?>/assets/images/img/toyota/Toyota Rush.png" alt="...">
+         <div class="w3-container w3-center p">
+          <center>
+            <b><p>ALL NEW TOYOTA RUSH</p></b>
+            <b><p>Rp. 150.000.000</p></b>
+        </center>
+        </div>
+      </div>
+      </div>
+
+      <div class="col-4">
+        <div class="w3-card-4 card">
+        <img src="<?php base_url() ?>/assets/images/img/toyota/Fortuner.png" alt="Alps">
+          <div class="w3-container w3-center p">
+            <center>
+              <b><p>TOYOTA FORTUNER ALL IN ONE</p></b>
+              <B><p>Rp. 500.000.000</p></B>
+            </center>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="w3-card-4 card">
+          <img src="<?php base_url() ?>/assets/images/img/toyota/Toyota Vios.png" alt="Alps">
+            <div class="w3-container w3-center p">
+            <center>
+              <b><p>ALL NEW TOYOTA VIOS</p></b>
+              <B><p>Rp. 300.000.000</p></B>
+            </center>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding-top: 20px;">
+      <div class="col-4">
+      <div class="w3-card-4 card">
+        <img src="<?php base_url() ?>/assets/images/img/nissan/Nissan Terra.png" alt="...">
+         <div class="w3-container w3-center p">
+          <center>
+            <b><p>NISSAN TERRA</p></b>
+            <b><p>Rp. 750.000.000</p></b>
+        </center>
+        </div>
+      </div>
+      </div>
+
+      <div class="col-4">
+        <div class="w3-card-4 card">
+        <img src="<?php base_url() ?>/assets/images/img/honda/Honda Civic.png" alt="Alps">
+          <div class="w3-container w3-center p">
+            <center>
+              <b><p>HONDA CIVIC</p></b>
+              <B><p>Rp. 700.000.000</p></B>
+            </center>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="w3-card-4 card">
+          <img src="<?php base_url() ?>/assets/images/img/mitsubishi/Mitsubishi Outlander.png" alt="Alps">
+            <div class="w3-container w3-center p">
+            <center>
+              <b><p>MITSUBISHI OUTLANDER</p></b>
+              <B><p>Rp. 800.000.000</p></B>
+            </center>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 
 
 
