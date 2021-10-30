@@ -24,6 +24,7 @@
     <!-- endinject -->
     <link rel="stylesheet" href="<?php base_url()?>/assets/css/style.css">
     <link rel="stylesheet" href="<?php base_url()?>/assets/vendors/mdi/css/materialdesignicons.min.css">
+    
     <!-- End layout styles -->
     <!-- Layout styles -->
     
@@ -55,11 +56,7 @@
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">
-                  <?php if(!empty(session()->get('gambar'))){?>
                     <img src="<?php base_url()?>/assets/images/faces/<?= session()->get('gambar')?>" alt="image">
-                    <?php }else{?>
-                      <img src="<?php base_url()?>/assets/images/faces/user_image.png" alt="image">
-                      <?php }?>
                   <span class="availability-status online"></span>
                 </div>
                 <div class="nav-profile-text">
@@ -137,11 +134,7 @@
             <li class="nav-item nav-profile">
               <a href="#" class="nav-link">
                 <div class="nav-profile-image">
-                <?php if(!empty(session()->get('gambar'))){?>
                     <img src="<?php base_url()?>/assets/images/faces/<?= session()->get('gambar')?>" alt="image">
-                    <?php }else{?>
-                      <img src="<?php base_url()?>/assets/images/faces/user_image.png" alt="image">
-                      <?php }?>
                   <span class="login-status online"></span>
                   <!--change to offline or busy as needed-->
                 </div>
@@ -158,6 +151,9 @@
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
+
+            <!-- admin menus -->
+
             <?php if(session()->get('id_groups') == 'Administrator') : ?>
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
@@ -168,23 +164,44 @@
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/PenggunaController">Data Pengguna</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/typography.html">Laporan Data Pengguna</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ReportController/reportPengguna">Laporan Data Pengguna</a></li>
                 </ul>
               </div>
             </li>
             <?php endif ; ?>
+            
+            <?php if(session()->get('id_groups') == 'Administrator') : ?>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic2">
+                <span class="menu-title">Setting</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-settings menu-icon"></i>
+              </a>
+              <div class="collapse" id="ui-basic2">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/SettingController/item_gambar">Item Gambar</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/SettingController/sosial_media">Sosial Media</a></li>
+                </ul>
+              </div>
+            </li>
+            <?php endif ; ?>
+
+            <!-- admin menus end -->
+
+            <!-- operator menus -->
             
             <?php if(session()->get('id_groups') == 'Operator') : ?>
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
                 <span class="menu-title">Produk</span>
                 <i class="menu-arrow"></i>
-                <i class="mdi mdi-cart-car menu-icon"></i>
+                <i class="mdi mdi-car menu-icon"></i>
               </a>
               <div class="collapse" id="general-pages">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Data Produk </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Laporan Data Produk </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/KreditController"> Simulasi Kredit </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ReportController/reportProduk"> Laporan Data Produk </a></li>
                 </ul>
               </div>
             </li>
@@ -198,6 +215,7 @@
               </a>
               <div class="collapse" id="sales5">
                 <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/TransaksiController">Transaksi Pembelian</a></li>
                   <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/buttons.html">Data Transaksi</a></li>
                   <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/buttons.html">Data Transaksi Cash</a></li>
                   <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/buttons.html">Data Transaksi Kredit</a></li>
@@ -215,8 +233,8 @@
               </a>
               <div class="collapse" id="sales2">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Tenor Cash </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Tenor Kredit </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#"> Tenor Cash </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#"> Tenor Kredit </a></li>
                 </ul>
               </div>
             </li>
@@ -230,9 +248,9 @@
               </a>
               <div class="collapse" id="sales1">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Penjualan Sales </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Laporan Penjualan </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Histori Penjualan </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#"> Penjualan Sales </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#"> Laporan Penjualan </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#"> Histori Penjualan </a></li>
                 </ul>
               </div>
             </li>
@@ -246,8 +264,8 @@
               </a>
               <div class="collapse" id="branch4">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Data Penjualan </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Penjualan Sales </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#"> Data Penjualan </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#"> Penjualan Sales </a></li>
                 </ul>
               </div>
             </li>
@@ -261,8 +279,8 @@
               </a>
               <div class="collapse" id="branch2">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Penjualan Cash </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Penjualan Kredit </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#"> Penjualan Cash </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#"> Penjualan Kredit </a></li>
                 </ul>
               </div>
             </li>
@@ -284,10 +302,10 @@
                 </a>
                 <div class="collapse" id="branch1">
                   <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Laporan Data Pengguna </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Laporan Data Produk </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Laporan Data Penjualan Cash </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/samples/login.html"> Laporan Data Penjualan Kredit </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ReportController/reportPengguna"> Laporan Data Pengguna </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ReportController/reportProduk"> Laporan Data Produk </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="#"> Laporan Data Penjualan Cash </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="#"> Laporan Data Penjualan Kredit </a></li>
                   </ul>
                 </div>
               </li>

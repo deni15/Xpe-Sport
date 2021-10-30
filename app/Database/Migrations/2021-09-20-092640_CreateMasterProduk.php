@@ -28,13 +28,14 @@ class CreateMasterProduk extends Migration
                 'type'           => 'VARCHAR',
                 'constraint'     => '255',
             ],
+			'harga_modal'       => [
+                'type'           => 'BIGINT'
+            ],
 			'harga'       => [
-                'type'           => 'VARCHAR',
-                'constraint'     => '255',
+                'type'           => 'BIGINT'
             ],
             'stok'       => [
-                'type'           => 'VARCHAR',
-                'constraint'     => '255',
+                'type'           => 'INT',
             ],
 			'warna'       => [
                 'type'           => 'VARCHAR',

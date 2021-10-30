@@ -49,10 +49,11 @@ class PenggunaController extends BaseController
 	}
 
 	public function save(){
-		//  $dt = $this->request->getVar();
-		//  dd($dt);
+
+		//inilisasi dan membuat variabel data hasil request
 		$fullname 		= $this->request->getVar('fullname');
 		$username 		= $this->request->getVar('username');
+		$tanggal_lahir  = $this->request->getVar('tanggal_lahir');
         $password 		= $this->request->getVar('password');
 		$email    		= $this->request->getVar('email');
 		$alamat   		= $this->request->getVar('alamat');
@@ -60,11 +61,9 @@ class PenggunaController extends BaseController
 		$id_groups		= $this->request->getVar('id_groups');
 		$no_telp 		= $this->request->getVar('no_telp');
 
-		// if ($this->request->getMethod() !== 'post') {
-        //     return redirect()->to(base_url('PenggunaController/create'));
-        // }
+		//validasi data 
 		if(!$this->validate([
-			'gambar' 		=> 'uploaded[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/gif,image/png]|max_size[gambar,14096]',
+			'gambar' 		=> 'mime_in[gambar,image/jpg,image/jpeg,image/gif,image/png]|max_size[gambar,14096]',
 			'fullname'	  	=> 'required|trim',
 			'username'   	=> 'required|trim|alpha',
 			'email'   		=> 'required|trim',
@@ -74,9 +73,7 @@ class PenggunaController extends BaseController
 			'alamat'		=> 'required|trim',
 			'id_groups'		=> 'required|trim'
         ])){
-			//session();
             $data1['validation'] = \Config\Services::validation();
-			//dd($validation);
             $session = session()->get('username');
 			if(!empty($session)){
 				$data1['title'] = 'Tambah Data Pengguna';
@@ -89,12 +86,25 @@ class PenggunaController extends BaseController
 			}
         }else{
  
+			// ambil gambar
             $avatar = $this->request->getFile('gambar');
-            $avatar->move(ROOTPATH . 'public/assets/images/faces');
- 
+
+			//menggunakan gambar default jika gambar kosong
+			if($avatar->getError() == 4){
+				//meenggunakan default gambar
+				$namaGambar = 'default-user.jpg';
+			}else{
+				//mengambil nama gambar dan random name
+				$namaGambar = $avatar->getRandomName();
+				//memindahkan file ke public assset
+				$avatar->move('assets/images/faces', $namaGambar);
+			}
+    
+			//membuat array data untuk insert ke database
             $data = [
-                'gambar' 			=> $avatar->getName(),
+                'gambar' 			=> $namaGambar,
 				'fullname' 			=> $fullname,
+				'tanggal_lahir'     => $tanggal_lahir,
 				'username' 			=> $username,
 				'password' 			=> $password,
 				'email' 			=> $email,
@@ -105,7 +115,7 @@ class PenggunaController extends BaseController
 				'created_at'		=> time(),
             ];
 			
-			//dd($data);
+			//insert data array ke database
             $this->ModelPengguna->insert($data);
 
 			session()->setFlashdata('success', 'Tambah Data Pengguna Berhasil');
@@ -143,6 +153,7 @@ class PenggunaController extends BaseController
 		//  dd($dt);
 		$fullname 		= $this->request->getVar('fullname');
 		$username 		= $this->request->getVar('username');
+		$tanggal_lahir  = $this->request->getVar('tanggal_lahir');
         $password 		= $this->request->getVar('password');
 		$email    		= $this->request->getVar('email');
 		$alamat   		= $this->request->getVar('alamat');
@@ -154,7 +165,7 @@ class PenggunaController extends BaseController
         //     return redirect()->to(base_url('PenggunaController/create'));
         // }
 		if(!$this->validate([
-			'gambar' 		=> 'uploaded[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/gif,image/png]|max_size[gambar,14096]',
+			'gambar' 		=> 'mime_in[gambar,image/jpg,image/jpeg,image/gif,image/png]|max_size[gambar,14096]',
 			'fullname'	  	=> 'required|trim',
 			'username'   	=> 'required|trim|alpha',
 			'email'   		=> 'required|trim',
@@ -179,29 +190,38 @@ class PenggunaController extends BaseController
 			}
         }else{
 
-			if(!empty($this->request->getFile('gambar'))){
-				$avatar = $this->request->getFile('gambar');
-				$avatar->move(ROOTPATH . 'public/assets/images/faces');
-				$gambar = $avatar->getName();
+			// ambil gambar
+            $avatar = $this->request->getFile('gambar');
+
+			//menggunakan gambar default jika gambar kosong
+			if($avatar->getError() == 4){
+				//meenggunakan default gambar
+				$namaGambar = $this->request->getVar('gambarLama');
 			}else{
-				$gambar = $gambarlama->gambar;
+				//mengambil nama gambar dan random name
+				$namaGambar = $avatar->getRandomName();
+				//memindahkan file ke public assset
+				$avatar->move('assets/images/faces', $namaGambar);
+				// hapus file lama
+				unlink('assets/images/faces/' . $this->request->getVar('gambarLama') );
 			}
-			// $avatar = $this->request->getFile('gambar');
-			// $avatar->move(ROOTPATH . 'public/assets/images/faces');
-			// $gambar = $avatar->getName();
  
             $data = [
-                'gambar' 			=> $gambar,
+                'gambar' 			=> $namaGambar,
 				'fullname' 			=> $fullname,
 				'username' 			=> $username,
-				//'password' 			=> bcrypt($password),
+				'tanggal_lahir'     => $tanggal_lahir,
 				'email' 			=> $email,
 				'no_telp' 			=> $no_telp,
 				'alamat' 			=> $alamat,
 				'jenis_kelamin' 	=> $jenis_kelamin,
 				'id_groups' 		=> $id_groups,
-				'created_at'		=> time(),
+				'updated_at'		=> time(),
             ];
+
+			if(!empty($password)){
+				$data['password'] = $password;
+				}
 			
             $this->ModelPengguna->update($id, $data);
 
@@ -231,7 +251,15 @@ class PenggunaController extends BaseController
 	}
 
 	public function delete($id){
-		//dd($id);
+
+		//cari gambar berdasarkan id
+		$user = $this->ModelPengguna->find($id);
+		// cek gambar default
+		if($user['gambar'] != 'default-user.jpg'){
+			//hapus gambar
+			untink('assets/images/faces' . $user['gambar'] );
+		}
+		//delete data
 		$this->ModelPengguna->delete($id);
 		session()->setFlashdata('success', 'Hapus Pengguna Berhasil');
 	    return redirect()->to(base_url('/PenggunaController/'));

@@ -45,12 +45,12 @@
                           </tr>
                         </thead>
                         <tbody>
-                        <?php
+                        <?php 
                         $i = 1;
                         foreach($produk as $row) :?>
                                 <tr>
                                 <td><?= $i++?></td>
-                                <td><img src="<?= base_url().'/assets/images/produk_foto/'.$row->gambar ?>" width="400px" height="400px"> </td>
+                                <td><img src="<?= base_url()?>/assets/images/produk_foto/<?= $row->gambar;?>"> </td>
                                 <td><?= $row->nama_produk ?></td>
                                 <td><?= $row->type_produk ?></td>
                                 <td><?= $row->stok ?></td>

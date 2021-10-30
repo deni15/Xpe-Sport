@@ -1,21 +1,40 @@
 <div class="content-wrapper">
-        <div class="col-12 grid-margin stretch-card">
+        <div class="col-12 grid-margin">
+        <div class="card mb-3">
+                    <div class="card-body p-4">
+                        <h1 class="card-title">Form Tambah Data Product</h1>
+                        <!-- breadcum -->
+                        <div aria-label="breadcrumb border-0">
+                        <ol class="breadcrumb border-0 p-0">
+                            <li class="breadcrumb-item"><a href="<?php base_url()?>/home">Dashboard</a></li>
+                            <li class="breadcrumb-item" aria-current="page"><a href="<?php base_url()?>/ProdukController">List Product</a></li>
+                            <li class="breadcrumb-item active" >Tambah Data</li>
+                        </ol>
+                        </div>
+                        <!-- end breadcum -->
+                    </div>
+                </div>
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-head">Form Tambah Data Produk</h3>
                     <div class="row mt-3">
                         <div class="col-lg-7">
                             <!--  -->
                             
                             <form action="<?= site_url('ProdukController/save')?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field();?>
-                            <div class="form-group">
-                                <label for="gambar" class="card-text">Masukan Foto Produk :</label>
-                                <input type="file" id="gambar" name="gambar" value="<?= old('gambar') ?>" class="form-control form-control-lg <?= ($validation->hasError('gambar')) ? 'is-invalid': '' ;?>">
+                            <!-- memasukan foto produk -->
+                            <label for="gambar" class="card-text">Masukan Foto Produk :</label>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input onchange="PriviewImg()" type="file" id="gambar" class="custom-file-input <?= ($validation->hasError('gambar')) ? 'is-invalid': '' ;?>" id="gambar" name="gambar">
+                                                <label class="custom-file-label" for="gambar">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 <div class="invalid-feedback">
-                                <?= $validation->getError('gambar');?>
-                            </div>
-                            </div>
+                                    <?= $validation->getError('gambar');?>
+                                </div>
                             <div class="form-group">
                                 <label for="nama_produk" class="card-text">Masukan Nama Produk :</label>
                                 <input type="text" id="nama_produk" class="form-control form-control-lg <?= ($validation->hasError('nama_produk')) ? 'is-invalid': '' ;?>" value="<?= old('nama_produk') ?>" name="nama_produk" placeholder="Nama Produk">
@@ -30,12 +49,19 @@
                                     <?= $validation->getError('type_produk');?>
                                 </div>
                             </div>
-                            
                             <div class="form-group">
-                                <label for="harga" class="card-text">Masukan Harga Produk :</label>
-                                <input type="number" id="harga" name="harga" class="form-control form-control-lg <?= ($validation->hasError('harga')) ? 'is-invalid': '' ;?>" placeholder="Masukan harga">
+                                <label for="harga_modal" class="card-text">Masukan Harga Modal Produk :</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Rp.</span>
+                                    </div>
+                                    <input type="number" id="harga_modal" name="harga_modal" class="form-control form-control-lg <?= ($validation->hasError('harga_modal')) ? 'is-invalid': '' ;?>" placeholder="Masukan Harga Modal">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                </div>
                                 <div class="invalid-feedback">
-                                    <?= $validation->getError('harga');?>
+                                    <?= $validation->getError('harga_modal');?>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -47,6 +73,21 @@
                             </div>
                         </div> <!-- col form 1 end -->
                         <div class="col-lg-5">
+                        <div class="form-group">
+                                <label for="harga" class="card-text">Masukan Harga Jual Produk :</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Rp.</span>
+                                    </div>
+                                    <input type="number" id="harga" name="harga" class="form-control form-control-lg <?= ($validation->hasError('harga')) ? 'is-invalid': '' ;?>" placeholder="Masukan Harga Jual">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('harga');?>
+                                </div>
+                            </div>
                         <div class="form-group">
                                 <label for="tahun_buat" class="card-text">Masukan tahun_buat :</label>
                                 <input type="date" id="tahun_buat" class="form-control form-control-lg <?= ($validation->hasError('tahun_buat')) ? 'is-invalid': '' ;?>" value="<?= old('tahun_buat') ?>" name="tahun_buat" placeholder="tahun_buat">
@@ -78,3 +119,59 @@
             </div>
         </div>
     </div>
+
+    <script src="<?php base_url()?>/assets/js/jquery.mask.min.js"></script>
+    <script type="text/javascript">
+            $(document).ready(function(){
+
+                // Format mata uang.
+                $( '#harga' ).mask('000.000.000000', {reverse: true});
+                $( '#harga_modal' ).mask('000.000.000000', {reverse: true});
+
+            })
+        </script>
+    <script src="">
+          $( document ).ready(function() {
+        validate();
+    });
+
+    function validate(){
+        $("form[name='post_data']").validate({
+            rules: {
+                gambar: "required",
+                nama_produk: "required",
+                type_produk: "required",
+                harga:{
+                        required: true,
+                        number: true
+                 },
+                stok: "required",
+                tahun_buat: "required",
+            },
+            messages: {
+                gambar: "Isi terlebih dahulu gambar anda",
+                nama_produk: "Nama produk tidak boleh kosong",
+                type_produk: "Type Produk tidak boleh kosong",
+                harga: "Isi hanya dengan angka",
+                stok: "Kolom stok tidak boleh kosong",
+                tahun_buat: "Kolom tahun pembuatan tidak boleh kosong",
+            },
+            submitHandler: function(form) {
+            form.submit();
+            }
+        });
+    }
+    </script>
+
+     <!-- membuat query gambar name di index -->
+     <script>
+      function PriviewImg(){
+        const gambar = document.querySelector('#gambar');
+        const gambarLabel = document.querySelector('.custom-file-label');
+
+        gambarLabel.textContent = gambar.files[0].name;
+
+        const fileGambar = new FileReader();
+        fileGambar.readAsDataURL(gambar.files[0]);
+      }
+    </script>

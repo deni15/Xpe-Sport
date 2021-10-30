@@ -12,7 +12,9 @@ class AddProdukTable extends Migration
         $data = [
             [
                 'nama_produk'      =>  'Toyota',
+                'gambar'           =>  'default-product.jpg',
 				'type_produk'      =>  'E-seris 34u',
+                'harga_modal'      =>  270000000,
                 'harga'            =>  300000000,
                 'stok'             =>  5,
                 'warna'            =>  'Merah',
@@ -21,7 +23,9 @@ class AddProdukTable extends Migration
             ],
             [
                 'nama_produk'      =>  'Mercedes',
+                'gambar'           =>  'default-product.jpg',
 				'type_produk'      =>  'S-serius 45r',
+                'harga_modal'      =>  200000000,
                 'harga'            =>  250000000,
                 'stok'             =>  5,
                 'warna'            =>  'Hitam',

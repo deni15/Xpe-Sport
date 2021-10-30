@@ -31,7 +31,7 @@
     <script src="<?php base_url()?>/assets/js/dashboard.js"></script>
     <script src="<?php base_url()?>/assets/js/todolist.js"></script>
     
-    <!-- End custom js for this page -->
+  
 
   </body>
 </html>
