@@ -54,6 +54,7 @@ class ProdukController extends BaseController
 		//  dd($dt);
 		$nama_produk 	= $this->request->getVar('nama_produk');
         $type_produk 	= $this->request->getVar('type_produk');
+        $harga_modal 	= $this->request->getVar('harga_modal');
 		$harga    		= $this->request->getVar('harga');
 		$stok   		= $this->request->getVar('stok');
 		$tahun_buat 	= $this->request->getVar('tahun_buat');
@@ -63,9 +64,10 @@ class ProdukController extends BaseController
         //     return redirect()->to(base_url('PenggunaController/create'));
         // }
 		if(!$this->validate([
-			'gambar' 		=> 'uploaded[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/gif,image/png]|max_size[gambar,14096]',
+			'gambar' 		=> 'mime_in[gambar,image/jpg,image/jpeg,image/gif,image/png]|max_size[gambar,14096]',
 			'nama_produk'	=> 'required|trim',
 			'harga'   	    => 'required|trim|numeric',
+			'harga_modal'   => 'required|trim|numeric',
 			'type_produk'   => 'required|trim',
 			'tahun_buat'    => 'required|trim',
 			'stok'		    => 'required|trim|numeric',
@@ -86,14 +88,26 @@ class ProdukController extends BaseController
 			}
         }else{
  
-            $avatar = $this->request->getFile('gambar');
-            $avatar->move(ROOTPATH . 'public/assets/images/produk_foto');
- 
+				// ambil gambar
+				$avatar = $this->request->getFile('gambar');
+
+				//menggunakan gambar default jika gambar kosong
+				if($avatar->getError() == 4){
+					//meenggunakan default gambar
+					$namaGambar = 'default-user.jpg';
+				}else{
+					//mengambil nama gambar dan random name
+					$namaGambar = $avatar->getRandomName();
+					//memindahkan file ke public assset
+					$avatar->move('public/assets/images/produk_foto', $namaGambar);
+				}
+          
             $data = [
-                'gambar' 			=> $avatar->getName(),
+                'gambar' 			=> $namaGambar,
 				'nama_produk' 	    => $nama_produk,
 				'type_produk' 		=> $type_produk,
 				'harga' 			=> $harga,
+				'harga_modal' 	    => $harga_modal,
 				'stok' 			    => $stok,
 				'tahun_buat' 	    => $tahun_buat,
 				'warna' 		    => $warna,

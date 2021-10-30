@@ -12,6 +12,7 @@ class AddUserTable extends Migration
 		$data = [
             [
                 'username'      =>  'Admin',
+                'gambar'        =>  'default-user.jpg',
 				'fullname'      =>  'Muhamad Deni',
                 'jenis_kelamin' =>  'Laki-laki',
                 'no_telp'       =>  '089659941572',
@@ -24,6 +25,7 @@ class AddUserTable extends Migration
             ],
             [
                 'username'      =>  'operator',
+                'gambar'        =>  'default-user.jpg',
 				'fullname'      =>  'Novinda Suci',
                 'jenis_kelamin' =>  'Perumpuan',
                 'no_telp'       =>  '08787654321',
@@ -36,6 +38,7 @@ class AddUserTable extends Migration
             ],
             [
                 'username'      =>  'sales',
+                'gambar'        =>  'default-user.jpg',
 				'fullname'      =>  'srimulat',
                 'jenis_kelamin' =>  'Perumpuan',
                 'no_telp'       =>  '08787654321',
@@ -48,6 +51,7 @@ class AddUserTable extends Migration
             ],
             [
                 'username'      =>  'manager',
+                'gambar'        =>  'default-user.jpg',
 				'fullname'      =>  'tari',
                 'jenis_kelamin' =>  'Perumpuan',
                 'no_telp'       =>  '08787654321',

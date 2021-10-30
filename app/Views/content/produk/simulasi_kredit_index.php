@@ -8,8 +8,7 @@
                     <div aria-label="breadcrumb border-0">
                       <ol class="breadcrumb border-0 p-0">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="#">Produk</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">List Produk</li>
+                        <li class="breadcrumb-item active" aria-current="page">Simulasi Kredit List</li>
                       </ol>
                     </div>
                     <!-- end breadcum -->
@@ -25,7 +24,7 @@
                   <div class="card-body">
                     <div class="row">
                             <div class="col-lg-2">
-                              <a href="<?= site_url('ProdukController/create') ?>" class="btn btn-primary btn-md form-control"><i class="mdi mdi-plus menu-icon"></i><i class="mdi mdi-account menu-icon"></i></a>
+                              <a href="<?= site_url('KreditController/create') ?>" class="btn btn-primary btn-md form-control"><i class="mdi mdi-plus menu-icon"></i><i class="mdi mdi-account menu-icon"></i></a>
                                 </div>
                                   <div class="col-lg-10">
                                 </div>
@@ -36,28 +35,27 @@
                         <thead>
                           <tr>
                             <th> No </th>
-                            <th> Picture </th>
-                            <th> Nama Produk </th>
-                            <th> Tipe </th>
-                            <th> Stok </th>
-                            <th> Tahun Buatan </th>
+                            <th> Jenis Simulasi Kredit </th>
+                            <th> Deskripsi </th>
+                            <th> Cicilan </th>
+                            <th> Bunga Pinjaman </th>
+                            <th> Uang Muka (DP) </th>
                             <th> Aksi </th>
                           </tr>
                         </thead>
                         <tbody>
                         <?php 
                         $i = 1;
-                        foreach($produk as $row) :?>
+                        foreach($skredit as $row) :?>
                                 <tr>
                                 <td><?= $i++?></td>
-                                <td><img src="<?= base_url()?>/assets/images/produk_foto/<?= $row->gambar;?>"> </td>
-                                <td><?= $row->nama_produk ?></td>
-                                <td><?= $row->type_produk ?></td>
-                                <td><?= $row->stok ?></td>
-                                <td><?= $row->tahun_buat ?></td>
+                                <td><?= $row->jenis_kredit;?></td>
+                                <td><?= $row->deskripsi ?></td>
+                                <td><?= $row->tenor ?> bulan</td>
+                                <td><?= $row->bunga_pinjaman ?> %</td>
+                                <td><?= $row->uang_muka ?> %</td>
                                  <td>
                                <div class="d-flex justify-content-center d-inline">
-                                    <a href="/produk/show/<?= $row->id?>" class="btn btn-primary btn-sm"> <i class="mdi mdi-file-document"></i></a> &nbsp;&nbsp;
                                     <a href="/produk/edit/<?= $row->id?>" class="btn btn-secondary btn-sm"> <i class="mdi mdi-pencil"></i></a> &nbsp;&nbsp;
                                     
                                     <!-- Button trigger modal -->
@@ -78,7 +76,7 @@
                                             </button>
                                           </div>
                                           <div class="modal-body">
-                                            Apa anda yakin ingin menghapus Produk Ini?
+                                            Apa anda yakin ingin menghapus Simulasi Ini?
                                           </div>
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-gradient-danger" data-dismiss="modal">Batalkan</button>

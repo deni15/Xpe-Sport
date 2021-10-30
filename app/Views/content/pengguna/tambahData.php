@@ -17,18 +17,24 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-7">
+                        <div class="col-lg-6">
                             <!--  -->
                             
-                            <form action="<?= site_url('PenggunaController/save')?>" method="post" enctype="multipart/form-data">
+                            <form action="<?= site_url('PenggunaController/save')?>" method="post" name="post_data" enctype="multipart/form-data">
                             <?= csrf_field();?>
-                            <div class="form-group">
+                                <!-- upload gambar -->
                                 <label for="gambar" class="card-text">Masukan Foto Pengguna :</label>
-                                <input type="file" id="gambar" name="gambar" value="<?= old('gambar') ?>" class="form-control form-control-lg <?= ($validation->hasError('gambar')) ? 'is-invalid': '' ;?>">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input onchange="PriviewImg()" type="file" id="gambar" class="custom-file-input <?= ($validation->hasError('gambar')) ? 'is-invalid': '' ;?>" id="gambar" name="gambar">
+                                                <label class="custom-file-label" for="gambar">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 <div class="invalid-feedback">
-                                <?= $validation->getError('gambar');?>
-                            </div>
-                            </div>
+                                    <?= $validation->getError('gambar');?>
+                                </div>
                             <div class="form-group">
                                 <label for="fullname" class="card-text">Masukan Nama Pengguna :</label>
                                 <input type="text" id="fullname" class="form-control form-control-lg <?= ($validation->hasError('fullname')) ? 'is-invalid': '' ;?>" value="<?= old('fullname') ?>" name="fullname" placeholder="Fullname">
@@ -59,7 +65,14 @@
                                 </div>
                             </div>
                         </div> <!-- col form 1 end -->
-                        <div class="col-lg-5">
+                        <div class="col-lg-6">
+                        <div class="form-group">
+                                <label for="tanggal_lahir" class="card-text">Masukan tanggal lahir :</label>
+                                <input type="date" id="tanggal_lahir" class="form-control form-control-lg <?= ($validation->hasError('tanggal_lahir')) ? 'is-invalid': '' ;?>" value="<?= old('tanggal_lahir') ?>" name="tanggal_lahir" >
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('tanggal_lahir');?>
+                                </div>
+                            </div>
                         <div class="form-group">
                                 <label for="password" class="card-text">Masukan Password :</label>
                                 <input type="password" id="password" class="form-control form-control-lg <?= ($validation->hasError('password')) ? 'is-invalid': '' ;?>" value="<?= old('password') ?>" name="password" placeholder="password">
@@ -111,7 +124,9 @@
 
 
     <!-- <script src=""></script>   //load library -->
-    <script src="">
+    <script src="{{ asset('js/jquery.validate.min.js')}}"></script>
+    <script src="{{ asset('assets_macb4/app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
+    <script>
           $( document ).ready(function() {
         validate();
     });
@@ -121,14 +136,15 @@
             rules: {
                 gambar: "required",
                 fullname: "required",
+                tanggal_lahir: "required",
                 username: "required",
                 alamat: "required",
                 no_telp: "required",
                 password: "required",
                 email: { required: true,
                          email: true,
-                         accept:"[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}" },
-                },
+                         accept:"[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}" 
+                        }
             },
             messages: {
                 gambar: "Isi terlebih dahulu gambar anda",
@@ -136,12 +152,24 @@
                 username: "Kolom username tidak boleh kosong",
                 alamat: "Kolom alamat tidak boleh kosong",
                 no_telp: "Kolom nomor telephone tidak boleh kosong",
-                password: "Kolom password tidak boleh kosong",
-                email: "Kolom email tidak boleh kosong",
+                password: "Kolom password tidak boleh kosong"
             },
             submitHandler: function(form) {
             form.submit();
             }
         });
     }
+    </script>
+
+    <!-- membuat query gambar name di index -->
+    <script>
+      function PriviewImg(){
+        const gambar = document.querySelector('#gambar');
+        const gambarLabel = document.querySelector('.custom-file-label');
+
+        gambarLabel.textContent = gambar.files[0].name;
+
+        const fileGambar = new FileReader();
+        fileGambar.readAsDataURL(gambar.files[0]);
+      }
     </script>

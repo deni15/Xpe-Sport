@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateMasterProduk extends Migration
+class CreateTableSimulasiKredit extends Migration
 {
     public function up()
     {
@@ -15,35 +15,22 @@ class CreateMasterProduk extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-			'gambar'       => [
-                'type'           => 'VARCHAR',
-                'constraint'     => '255',
-                'null'           => true,
-            ],
-			'nama_produk'       => [
-                'type'           => 'VARCHAR',
-                'constraint'     => '255',
-            ],
-			'type_produk'       => [
-                'type'           => 'VARCHAR',
-                'constraint'     => '255',
-            ],
-			'harga_modal'       => [
-                'type'           => 'BIGINT'
-            ],
-			'harga'       => [
-                'type'           => 'BIGINT'
-            ],
-            'stok'       => [
-                'type'           => 'INT',
-            ],
-			'warna'       => [
+            'jenis_kredit' => [
                 'type'           => 'VARCHAR',
                 'constraint'     => '100',
             ],
-            'tahun_buat' => [
-                'type'           => 'DATE',
-                'null'           => true,
+            'deskripsi'       => [
+                'type'           => 'VARCHAR',
+                'constraint'     => '255',
+            ],
+			'tenor'       => [
+                'type'           => 'INT'
+            ],
+			'bunga_pinjaman'       => [
+                'type'           => 'INT'
+            ],
+            'uang_muka'       => [
+                'type'           => 'BIGINT',
             ],
             'created_at' => [
                 'type'           => 'DATETIME',
@@ -55,12 +42,12 @@ class CreateMasterProduk extends Migration
             ]
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('produk');
+        $this->forge->createTable('simulasi_kredit');
     }
 
     public function down()
     {
        
-        $this->forge->dropTable('produk');
+        $this->forge->dropTable('simulasi_kredit');
     }
 }

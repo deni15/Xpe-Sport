@@ -56,11 +56,7 @@
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">
-                  <?php if(!empty(session()->get('gambar'))){?>
                     <img src="<?php base_url()?>/assets/images/faces/<?= session()->get('gambar')?>" alt="image">
-                    <?php }else{?>
-                      <img src="<?php base_url()?>/assets/images/faces/user_image.png" alt="image">
-                      <?php }?>
                   <span class="availability-status online"></span>
                 </div>
                 <div class="nav-profile-text">
@@ -138,11 +134,7 @@
             <li class="nav-item nav-profile">
               <a href="#" class="nav-link">
                 <div class="nav-profile-image">
-                <?php if(!empty(session()->get('gambar'))){?>
                     <img src="<?php base_url()?>/assets/images/faces/<?= session()->get('gambar')?>" alt="image">
-                    <?php }else{?>
-                      <img src="<?php base_url()?>/assets/images/faces/user_image.png" alt="image">
-                      <?php }?>
                   <span class="login-status online"></span>
                   <!--change to offline or busy as needed-->
                 </div>
@@ -159,6 +151,9 @@
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
+
+            <!-- admin menus -->
+
             <?php if(session()->get('id_groups') == 'Administrator') : ?>
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
@@ -175,16 +170,37 @@
             </li>
             <?php endif ; ?>
             
+            <?php if(session()->get('id_groups') == 'Administrator') : ?>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic2">
+                <span class="menu-title">Setting</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-settings menu-icon"></i>
+              </a>
+              <div class="collapse" id="ui-basic2">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/SettingController/item_gambar">Item Gambar</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/SettingController/sosial_media">Sosial Media</a></li>
+                </ul>
+              </div>
+            </li>
+            <?php endif ; ?>
+
+            <!-- admin menus end -->
+
+            <!-- operator menus -->
+            
             <?php if(session()->get('id_groups') == 'Operator') : ?>
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
                 <span class="menu-title">Produk</span>
                 <i class="menu-arrow"></i>
-                <i class="mdi mdi-cart-car menu-icon"></i>
+                <i class="mdi mdi-car menu-icon"></i>
               </a>
               <div class="collapse" id="general-pages">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ProdukController"> Data Produk </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/KreditController"> Simulasi Kredit </a></li>
                   <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/ReportController/reportProduk"> Laporan Data Produk </a></li>
                 </ul>
               </div>
