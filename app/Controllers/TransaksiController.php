@@ -41,4 +41,58 @@ class TransaksiController extends BaseController
 			return redirect()->to('/');
 		}
     }
+
+    
+	public function getProductWithAjax(){
+        if($this->request->isAJAX()){
+		$id = $this->request->getVar('id');
+
+        $data = $this->ProdukModel->find($id);
+
+        }
+		echo json_encode($data);
+        
+	}
+
+	public function getSalesWithAjax(){
+        if($this->request->isAJAX()){
+		$id = $this->request->getVar('id');
+
+        $data = $this->ModelPengguna->find($id);
+	
+        }
+		echo json_encode($data);
+        
+	}
+
+	public function getSKreditWithAjax(){
+        if($this->request->isAJAX()){
+		$id = $this->request->getVar('id');
+
+        $data = $this->ModelSimulasiKredit->find($id);
+	
+        }
+		echo json_encode($data);
+        
+	}
+
+    public function subtotal(){
+        if($this->request->isAJAX()){
+            $pembayaran = $this->request->getVar('pembayaran');
+            $data = 0;
+            if($pembayaran == 2){
+                $hargajual = $this->request->getVar('hargaJual');
+                $tenorr = $this->request->getVar('skreditTenor');
+                $bunga = $this->request->getVar('skreditBunga');
+                $Dp = $this->request->getVar('skreditDp');
+                $tenor = $tenorr / 12;
+                $total = $hargajual * $bunga / 100 * $tenor ;
+                $data = $total + $hargajual;
+            }else{
+                $hargajual = $this->request->getVar('hargaJual');
+                $data = $hargajual;
+            }
+        }
+            echo json_encode($data);
+    }
 }

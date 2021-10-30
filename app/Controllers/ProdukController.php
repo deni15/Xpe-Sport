@@ -99,7 +99,7 @@ class ProdukController extends BaseController
 					//mengambil nama gambar dan random name
 					$namaGambar = $avatar->getRandomName();
 					//memindahkan file ke public assset
-					$avatar->move('public/assets/images/produk_foto', $namaGambar);
+					$avatar->move('assets/images/produk_foto', $namaGambar);
 				}
           
             $data = [
@@ -127,4 +127,5 @@ class ProdukController extends BaseController
 		session()->setFlashdata('success', 'Hapus Produk Berhasil');
 	    return redirect()->to(base_url('/ProdukController/'));
 	}
+
 }

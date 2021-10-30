@@ -120,16 +120,7 @@
         </div>
     </div>
 
-    <script src="<?php base_url()?>/assets/js/jquery.mask.min.js"></script>
-    <script type="text/javascript">
-            $(document).ready(function(){
-
-                // Format mata uang.
-                $( '#harga' ).mask('000.000.000000', {reverse: true});
-                $( '#harga_modal' ).mask('000.000.000000', {reverse: true});
-
-            })
-        </script>
+   
     <script src="">
           $( document ).ready(function() {
         validate();
