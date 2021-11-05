@@ -22,9 +22,7 @@ class ReportController extends BaseController
         $session = session()->get('username');
 		if(!empty($session)){
 			$data['title'] = 'Report Data Pengguna';
-				   echo view('template/templateAdmin/head',$data);
 				   echo view('content/Report/ReportPengguna',$data);
-				   echo view('template/templateAdmin/foot');
 		}else{
 		session()->setFlashdata('success', 'Waktu Anda telah berakhir, silahkan Masuk kembali');
 			return redirect()->to('/');
@@ -38,9 +36,7 @@ class ReportController extends BaseController
         $session = session()->get('username');
 		if(!empty($session)){
 			$data['title'] = 'Report Produk';
-				   echo view('template/templateAdmin/head',$data);
 				   echo view('content/Report/ReportProduk',$data);
-				   echo view('template/templateAdmin/foot');
 		}else{
 		session()->setFlashdata('success', 'Waktu Anda telah berakhir, silahkan Masuk kembali');
 			return redirect()->to('/');
