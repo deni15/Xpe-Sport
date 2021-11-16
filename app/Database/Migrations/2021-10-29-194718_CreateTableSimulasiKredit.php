@@ -32,6 +32,18 @@ class CreateTableSimulasiKredit extends Migration
             'uang_muka'       => [
                 'type'           => 'BIGINT',
             ],
+            'polis_asuransi'       => [
+                'type'           => 'BIGINT',
+            ],
+            'provisi'       => [
+                'type'           => 'BIGINT',
+            ],
+            'asuransi'       => [
+                'type'           => 'BIGINT',
+            ],
+            'administrasi'       => [
+                'type'           => 'BIGINT',
+            ],
             'created_at' => [
                 'type'           => 'DATETIME',
                 'null'           => true,

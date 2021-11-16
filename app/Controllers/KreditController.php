@@ -52,18 +52,26 @@ class KreditController extends BaseController
         //  $dt = $this->request->getVar();
 		//    dd($dt);
 	
-		$jenis_kredit 	= $this->request->getVar('jenis_kredit');
-        $deskripsi   	= $this->request->getVar('deskripsi');
-        $tenor       	= $this->request->getVar('tenor');
-		$bunga_pinjaman = $this->request->getVar('bunga_pinjaman');
-		$uang_muka      = $this->request->getVar('uang_muka');
+		$jenis_kredit 		= $this->request->getVar('jenis_kredit');
+        $deskripsi   		= $this->request->getVar('deskripsi');
+        $tenor       		= $this->request->getVar('tenor');
+		$bunga_pinjaman 	= $this->request->getVar('bunga_pinjaman');
+		$uang_muka      	= $this->request->getVar('uang_muka');
+		$asuransi      		= $this->request->getVar('asuransi');
+		$provisi      		= $this->request->getVar('provisi');
+		$administrasi      	= $this->request->getVar('administrasi');
+		$polis_asuransi     = $this->request->getVar('polis_asuransi');
 
 		if(!$this->validate([
 			'jenis_kredit'	=> 'required|trim',
 			'bunga_pinjaman'=> 'required|trim|numeric',
 			'uang_muka'     => 'required|trim|numeric',
-			'deskripsi  '   => 'required|trim',
+			'deskripsi'   	=> 'required|trim',
 			'tenor'	        => 'required|trim|numeric',
+			'asuransi'	    => 'required|trim|numeric',
+			'administrasi'  => 'required|trim|numeric',
+			'provisi'	    => 'required|trim|numeric',
+			'polis_asuransi'=> 'required|trim|numeric',
         ])){
 			//session();
             $data1['validation'] = \Config\Services::validation();
@@ -83,6 +91,10 @@ class KreditController extends BaseController
 				'uang_muka' 		=> $uang_muka,
 				'tenor' 			=> $tenor,
 				'bunga_pinjaman' 	=> $bunga_pinjaman,
+				'asuransi' 			=> $asuransi,
+				'provisi' 			=> $provisi,
+				'administrasi' 		=> $administrasi,
+				'polis_asuransi' 	=> $polis_asuransi,
 				'created_at'		=> time(),
             ];
 			

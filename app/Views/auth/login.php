@@ -22,7 +22,7 @@
     background: linear-gradient(#6e0cee, #df6ec6);   
     }
     .bg-img{
-      background-image: url("<?php base_url()?>/assets/images/dashboard/dealer.jpg");
+     
     }
     .card{
       opacity: 0.8;
@@ -48,7 +48,7 @@
                   <?php endif; ?>
                   
                   <div class="brand-logo d-flex justify-content-center bg-netral">
-                    <img src="<?php base_url()?>/assets/images/dashboard/logo-01.png">
+                    <img style="width:300px" class="my-4" src="<?php base_url()?>/assets/images/banner/logo2.png">
                   </div>
   
                 <?php if (!empty(session()->getFlashdata('error'))) : ?>
@@ -70,7 +70,7 @@
                    </div>
                   </div>
                   <div class="mt-3">
-                    <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">Masuk</button>
+                    <button type="submit" class="btn btn-block btn-gradient-secondary btn-lg font-weight-medium auth-form-btn">Masuk</button>
                   </div>
                   <div class="my-2 d-flex justify-content-between align-items-center">
                     <a href="#" class="auth-link text-black">Forgot password?</a>

@@ -43,6 +43,7 @@ class LoginController extends BaseController
         if ($dataUser) {
             if ($password == $dataUser->password) {
                 session()->set([
+                    'id' => $dataUser->id,
                     'username' => $dataUser->username,
                     'fullname' => $dataUser->fullname,
                     'id_groups' => $dataUser->id_groups,

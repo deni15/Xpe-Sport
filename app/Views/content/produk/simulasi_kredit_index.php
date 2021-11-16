@@ -30,16 +30,19 @@
                                 </div>
                         </div>
                         <hr>
-                    <div style="margin-left:30px;">
-                      <table class="ui celled table text-center" style="width:100%" id="DataT">
+                    <div class="table-responsive p-4" >
+                      <table class="ui celled table text-center" id="DataT">
                         <thead>
                           <tr>
                             <th> No </th>
                             <th> Jenis Simulasi Kredit </th>
-                            <th> Deskripsi </th>
                             <th> Cicilan </th>
                             <th> Bunga Pinjaman </th>
                             <th> Uang Muka (DP) </th>
+                            <th> Administrasi </th>
+                            <th> Asuransi </th>
+                            <th> Provisi </th>
+                            <th> Polis Asuransi </th>
                             <th> Aksi </th>
                           </tr>
                         </thead>
@@ -50,10 +53,13 @@
                                 <tr>
                                 <td><?= $i++?></td>
                                 <td><?= $row->jenis_kredit;?></td>
-                                <td><?= $row->deskripsi ?></td>
                                 <td><?= $row->tenor ?> bulan</td>
                                 <td><?= $row->bunga_pinjaman ?> %</td>
                                 <td><?= $row->uang_muka ?> %</td>
+                                <td>Rp. <?= $row->administrasi ?></td>
+                                <td><?= $row->asuransi ?> %</td>
+                                <td><?= $row->provisi ?> %</td>
+                                <td>Rp. <?= $row->polis_asuransi ?></td>
                                  <td>
                                <div class="d-flex justify-content-center d-inline">
                                     <a href="/produk/edit/<?= $row->id?>" class="btn btn-secondary btn-sm"> <i class="mdi mdi-pencil"></i></a> &nbsp;&nbsp;

@@ -17,7 +17,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row mt-3">
-                        <div class="col-lg-7">
+                        <div class="col-lg-6">
                             <!--  -->
                             
                             <form action="<?= site_url('KreditController/save')?>" method="post">
@@ -40,26 +40,44 @@
                             </div>
                             
                         </div> <!-- col form 1 end -->
-                        <div class="col-lg-5">
+                        <div class="col-lg-6">
                             <div class="form-group">
-                            <label for="stok" class="card-text">Tenor, Bunga Pinjaman, Uang Muka :</label>
-                                <div class="input-group">
-                                    <input type="number" class="form-control <?= ($validation->hasError('tenor')) ? 'is-invalid': '' ;?>" value="<?= old('tenor') ?>" name="tenor" placeholder="example : 60" id="">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text " >Bulan</span>
+                                <label for="stok" class="card-text">Tenor, Bunga Pinjaman, Uang Muka :</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control <?= ($validation->hasError('tenor')) ? 'is-invalid': '' ;?>" value="<?= old('tenor') ?>" name="tenor" placeholder="example : 60" id="">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text " >Bulan</span>
+                                        </div>
+                                        <input type="number" name="bunga_pinjaman" class="form-control <?= ($validation->hasError('bunga_pinjaman')) ? 'is-invalid': '' ;?>" value="<?= old('bunga_pinjaman') ?>" placeholder="example : 5">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">%</span>
+                                        </div>
+                                        <input type="number" name="uang_muka" class="form-control <?= ($validation->hasError('uang_muka')) ? 'is-invalid': '' ;?>" value="<?= old('uang_muka') ?>" placeholder="example : 30">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">%</span>
+                                        </div>
                                     </div>
-                                    <input type="number" name="bunga_pinjaman" class="form-control <?= ($validation->hasError('bunga_pinjaman')) ? 'is-invalid': '' ;?>" value="<?= old('bunga_pinjaman') ?>" placeholder="example : 5">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="">%</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="stok" class="card-text">Asuransi, Provisi, administrasi, Polis Asuransi :</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control <?= ($validation->hasError('asuransi')) ? 'is-invalid': '' ;?>" value="<?= old('asuransi') ?>" name="asuransi" placeholder="" id="">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text " >%</span>
+                                        </div>
+                                        <input type="number" name="provisi" class="form-control <?= ($validation->hasError('provisi')) ? 'is-invalid': '' ;?>" value="<?= old('provisi') ?>" placeholder="">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">%</span>
+                                        </div>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Rp</span>
+                                        </div>
+                                        <input type="number" name="administrasi" class="form-control <?= ($validation->hasError('administrasi')) ? 'is-invalid': '' ;?>" value="<?= old('administrasi') ?>" placeholder="">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Rp</span>
+                                        </div>
+                                        <input type="number" name="polis_asuransi" class="form-control <?= ($validation->hasError('polis_asuransi')) ? 'is-invalid': '' ;?>" value="<?= old('polis_asuransi') ?>" placeholder="">
                                     </div>
-                                    <input type="number" name="uang_muka" class="form-control <?= ($validation->hasError('uang_muka')) ? 'is-invalid': '' ;?>" value="<?= old('uang_muka') ?>" placeholder="example : 30">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="">%</span>
-                                    </div>
-                                </div>
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('bunga_pinjaman');?>
-                                </div>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">Tambah Data</button>
