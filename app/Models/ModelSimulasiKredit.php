@@ -10,6 +10,7 @@ class ModelSimulasiKredit extends Model
     protected $primaryKey = "id";
     protected $returnType = "object";
     protected $useTimestamps = true;
-    protected $allowedFields = ['jenis_kredit','deskripsi','tenor','bunga_pinjaman', 'uang_muka'];
+    protected $allowedFields = ['jenis_kredit','deskripsi','tenor','bunga_pinjaman',
+     'uang_muka','polis_asuransi','asuransi','administrasi','provisi'];
 
 }
