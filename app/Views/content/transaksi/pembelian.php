@@ -22,7 +22,7 @@
                               <div class="form-group">
                                 <label for="produk" class="card-text">Metode Bayar :</label>
                               <div class="input-group">
-                                  <select onchange="selected()" class="custom-select" id="inputGroupSelect04">
+                                  <select onchange="selected()" name="metodebayar"  class="custom-select" id="inputGroupSelect04">
                                     <option selected>-- Pilih Metode Bayar --</option>
                                     <option value="1">Cash</option>
                                     <option value="2">Credit</option>
@@ -35,7 +35,7 @@
                             <div class="form-group">
                               <label for="produk" class="card-text">Pilih Produk :</label>
                             <div class="input-group">
-                               <input type="hidden" id="product_id" class="form-control" placeholder="Choose..">
+                               <input type="hidden" name="product_id" id="product_id" class="form-control" placeholder="Choose..">
                                <input type="text" id="product_name" class="form-control" placeholder="Choose..">
                                 <div class="input-group-append">
                                   <button class="btn btn-primary" type="button" data-toggle="modal" data-target=".bd-example-modal-lg">...</button>
@@ -45,7 +45,7 @@
                             <div class="form-group" id="kredit" style="display:none">
                               <label for="produk" class="card-text">Pilih Simulasi Kredit :</label>
                             <div class="input-group">
-                               <input type="hidden" id="skredit_id" class="form-control" placeholder="Choose..">
+                               <input type="hidden" name="skredit_id" id="id_skredit" class="form-control" >
                                <input type="text" id="skredit_name" class="form-control" placeholder="Choose..">
                                 <div class="input-group-append">
                                 <button class="btn btn-primary" type="button" data-toggle="modal" data-target=".bd-example-modal-lg2">...</button>
@@ -57,11 +57,12 @@
                             <div class="form-group">
                               <label for="operator" class="card-text">Operator :</label>
                                   <input readonly type="text" class="form-control" name="operator" id="operator" value="<?= session()->get('fullname')?>">
+                                  <input type="hidden" class="form-control" name="operator_id" value="<?= session()->get('id')?>">
                             </div>
                             <div class="form-group">
                                 <label for="produk" class="card-text">Pilih Sales :</label>
                               <div class="input-group">
-                                <input type="hidden" id="sales_id" class="form-control" placeholder="Choose..">
+                                <input type="hidden" name="sales_id" id="sales_id" class="form-control" placeholder="Choose..">
                                 <input type="text" id="sales_name" class="form-control" placeholder="Choose..">
                                   <div class="input-group-append">
                                     <button class="btn btn-primary" type="button" data-toggle="modal" data-target=".bd-example-modal-lg1">...</button>
@@ -95,11 +96,7 @@
                                 <tr>
                                   <th>Banyak Cicilan :</th>
                                   <td>
-                                    <div class="input-group">
-                                      <input readonly type="number" name="stok" class="form-control"  id="skreditTenor">
-                                      <div class="input-group-prepend">
-                                        <span class="input-group-text" id="">bulan</span>
-                                      </div>
+                                  <p class="card-text" id="skreditTenor"></p>
                                   </div>
                                   </td>
                                 </tr>
@@ -107,22 +104,17 @@
                                   <th>Uang Muka :</th>
                                   <td>
                                     <div class="input-group">
-                                      <input readonly type="number" name="stok" class="form-control"   id="skreditDp">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="">%</span>
+                                      <div class="input-group-prepend">
+                                          <span class="input-group-text" id="">Rp</span>
                                         </div>
+                                      <input  type="number" name="dpkredit" class="form-control"   id="skreditDp">
                                     </div>
                                   </td>
                                 </tr>
                                 <tr>
                                   <th>Bunga Peminjaman :</th>
                                   <td>
-                                    <div class="input-group">
-                                      <input readonly type="number" name="stok" class="form-control" id="skreditBunga">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="">%</span>
-                                        </div>
-                                    </div>
+                                  <p class="card-text" id="skreditBunga"></p>
                                   </td>
                                 </tr>
                               </tbody>
@@ -155,10 +147,10 @@
                                   </td>
                                 </tr>
                                 <tr>
-                                  <th>Nomor Telphone :</th>
+                                  <th>Email :</th>
                                   <td>
                                     <div class="input-group">
-                                      <input type="text" name="no_telp" class="form-control" placeholder="Masukan Nomer Pembeli">
+                                      <input type="text" name="email" class="form-control" placeholder="Masukan Email Pembeli">
                                     </div>
                                   </td>
                                 </tr>
@@ -189,7 +181,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr class="table-success">
+                        <tr class="table-primary">
                           <td id="produkName">  </td>
                           <td class="col-xs-2">
                             <input type="number" readonly name="stok" maxlength="4" size="4" class="form-control" id="produkStok">
@@ -201,29 +193,56 @@
                             <input type="number" readonly name="harga_jual" class="form-control" id="hargaJual">
                           </td>
                           <td>
-                            <button type="button" onclick="subtotal()" id="jml" class="btn btn-success form-control">Jumlahkan</button>
+                            <div class="d-flex flex-row">
+                              <button type="button" onclick="subtotal()" id="jml" class="btn btn-success form-control mr-3">Jumlahkan</button>
+                              <button type="button" onclick="resset()" id="reset" class="btn btn-danger form-control">Reset</button>
+                            </div>
                           </td>
                         </tr>
                         <tr>
                           <td colspan="4"><b>Subtotal</b>  </td>
-                          <td colspan="2" class="subtotall">  </td>
+                          <td colspan="2" class="subtotall">
+                            <div class="input-group">
+                              <span class="input-group-text" id="basic-addon1">Rp.</span>
+                              <input type="number" name="bayarawal" readonly class="form-control subtotall">
+                            </div>
+                          </td>
                         </tr>
                         <tr>
                           <td colspan="4"><b>Potongan Harga</b>  </td>
                           <td colspan="2"> 
                           <div class="input-group">
                             <span class="input-group-text" id="basic-addon1">Rp.</span>
-                            <input type="text" class="form-control" placeholder="Potongan Harga" aria-label="Potongan Harga" aria-describedby="basic-addon1">
+                            <input type="number" name="potongan" value="0" class="form-control" placeholder="Potongan Harga" id="potongan" aria-label="Potongan Harga" aria-describedby="basic-addon1">
                             </div>      
                         </td>
                         </tr>
                         <tr>
                           <td colspan="4"><b>Total Harga</b>  </td>
-                          <td colspan="2"> Rp.0 </td>
+                          <td colspan="2"> 
+                          <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1">Rp.</span>
+                          <input type="number" name="totalbayar" readonly class="form-control" id="total">    
+                          </div> 
+                        </td>
                         </tr>
                     </tbody>
-                </form>
-                    </table>
+                  </table>
+                        <!-- input hidden -->
+                            <input type="hidden" id="cicilan" name="cicilan">
+                            <input type="hidden" id="asuransi" name="asuransi">
+                            <input type="hidden" id="provisi" name="provisi">
+                            <input type="hidden" id="angsuran_bunga" name="angsuran_bunga">
+                            <input type="hidden" id="angsuran_pokok" name="angsuran_pokok">
+                            <input type="hidden" id="totalpinjaman" name="totalpinjaman">
+                            <input type="hidden" id="administrasi" name="administrasi">
+                            <input type="hidden" id="pinjamanpolis" name="pinjamanpolis">
+                            <input type="hidden" id="dp" name="dp">
+                        <!-- end input hidden -->
+                        <div class="text-center">
+                          <button type="submit" class="btn btn-primary btn-lg form-control">Checkout</button>
+                        </div>
+                      </form>
                     </div>
                 </div> <!-- tutup row -->
             </div>
@@ -404,8 +423,10 @@
 
 <script>
     $(document).ready(function() {
+      
       $('#DataProduct').DataTable();
       $('#DataUser').DataTable();
+     
     });
 
     // Selected pembayaran credit
@@ -420,12 +441,37 @@
         }else{
             $('#kredit').hide();
             $('#carabayar').text('Cash');
-            $('#skreditName').text('-');
-            $('#skreditTenor').val(0);
-            $('#skreditBunga').val(0)
+            $('#skreditName').text('');
+            $('#skreditTenor').text('');
+            $('#skreditBunga').text('')
             $('#skreditDp').val(0);
         }
     }
+
+    
+      $('#potongan').keyup(function(){
+        var sub = parseInt($('.subtotall').val());
+        var pot =  parseInt($('#potongan').val());
+        
+         console.log('test');
+         $.ajax({
+                url: "<?= base_url('TransaksiController/getTotalWithAjax')?>",
+                method: 'post',
+                data: {sub:sub,pot:pot},
+                dataType: 'json',
+                  success:function(data){
+                      console.log(data);
+                      $('#total').val(data);
+                     // document.getElementById("teww").innerHTML +="NIM :" + data.id ;
+                      $('#default').modal('toggle');
+                  },
+                  error:function(data){
+                      console.log("error");
+                      console.log(data);
+                  },
+              });
+      });
+
 
 
     //mengambil data produk
@@ -495,12 +541,11 @@
                 dataType: 'json',
                   success:function(data){
                       console.log(data);
-                       $('#skredit_id').val(data.id);
+                       $('#id_skredit').val(data.id);
                        $('#skredit_name').val(data.jenis_kredit);
                        $('#skreditName').text(data.jenis_kredit);
-                       $('#skreditTenor').val(data.tenor);
-                       $('#skreditBunga').val(data.bunga_pinjaman);
-                       $('#skreditDp').val(data.uang_muka);
+                       $('#skreditTenor').text(data.tenor+' x');
+                       $('#skreditBunga').text(data.bunga_pinjaman+' %');
                     // document.getElementById("teww").innerHTML +="NIM :" + data.id ;
                       $('#salesmodal').modal('toggle');
                   },
@@ -517,18 +562,20 @@
           //e.preventDefault();
             var pembayaran = parseInt($('.custom-select').val());
             var hargaJual  = parseInt($('#hargaJual').val());
-            var skreditTenor  = parseInt($('#skreditTenor').val());
-            var skreditBunga  = parseInt($('#skreditBunga').val());
+            var id_skredit = parseInt($('#id_skredit').val());
             var skreditDp  = parseInt($('#skreditDp').val());
               $.ajax({
                 url: "<?= base_url('TransaksiController/subtotal')?>",
                 method: 'post',
-                data: {hargaJual:hargaJual,skreditTenor:skreditTenor,skreditBunga:skreditBunga,skreditDp:skreditDp,pembayaran:pembayaran
+                data: {hargaJual:hargaJual,id_skredit:id_skredit,skreditDp:skreditDp,pembayaran:pembayaran
                 },
                 dataType: 'json',
                   success:function(data){
                       console.log(data);
-                      $('.subtotall').text('Rp.' + data);
+                      $('.subtotall').val(data.subtotal);
+                      $('#asuransi').val(data.asuransi);
+                      $('#cicilan').val(data.cicilan);
+                      $('#provisi').val(data.provisi);
 
                     // document.getElementById("teww").innerHTML +="NIM :" + data.id ;
                   },
@@ -544,6 +591,8 @@
     <script src="">
           $( document ).ready(function() {
         validate();
+
+       
 
        
     });
@@ -585,7 +634,12 @@
       //       var query = (hargaJual * skreditBunga% * skreditTenor/12);
       //       consol.log(query);
       //   });
-    
+      
+      //menghitung total harga
+      $('#').keyup(function(){
+
+      });
+
     </script>
 
  
