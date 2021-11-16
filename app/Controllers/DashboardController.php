@@ -49,4 +49,15 @@ class DashboardController extends BaseController
 		echo view('template/frontendTemplate/footer');
 	}
 
+	public function simulasi()
+	{
+		$data = [
+			'title' => 'Simulasi Kredit',
+			'judul'	=> 'Simulasi Kredit'
+		];
+		echo view('template/frontendTemplate/headerdetail',$data);
+		echo view('frontend/simulasi', $data);
+		echo view('template/frontendTemplate/footer');
+	}
+
 }

@@ -54,6 +54,9 @@
                             <a class="nav-link active" aria-current="page" href="<?= base_url('DashboardController/') ?>"><i class="mdi mdi-home  h5"></i> Home</a>
                             </li>
                             <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('DashboardController/simulasi') ?>"><i class="mdi mdi-credit-card  h5"></i> Simulasi Kredit</a>
+                            </li>
+                            <li class="nav-item">
                             <a class="nav-link" href="<?= base_url('DashboardController/vehicles') ?>"><i class="mdi mdi-car h5"></i> Our Vehicles</a>
                             </li>
                             <li class="nav-item">

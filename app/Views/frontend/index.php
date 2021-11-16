@@ -67,9 +67,9 @@
                     <div class="card bg-dark text-white rounded-0">
                         <img src="<?php base_url() ?>/assets/images/banner/galeri1.jpg" class="card-img rounded-0" alt="...">
                         <div class="card-img-overlay">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <p class="card-text">Last updated 3 mins ago</p>
+                            <h5 class="card-title"></h5>
+                            <p class="card-text"></p>
+                            <p class="card-text"></p>
                         </div>
                     </div>
                 </div>
@@ -79,9 +79,9 @@
                             <div class="card bg-dark text-white rounded-0">
                                 <img src="<?php base_url() ?>/assets/images/banner/galeri2 (1).jpg" class="card-img rounded-0" alt="...">
                                 <div class="card-img-overlay">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p class="card-text">Last updated 3 mins ago</p>
+                                    <h5 class="card-title"></h5>
+                                    <p class="card-text"></p>
+                                    <p class="card-text"></p>
                                 </div>
                             </div>
                         </div>
@@ -89,9 +89,9 @@
                         <div class="card bg-dark text-white rounded-0">
                                 <img src="<?php base_url() ?>/assets/images/banner/galeri3.jpg" class="card-img rounded-0" alt="...">
                                 <div class="card-img-overlay">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p class="card-text">Last updated 3 mins ago</p>
+                                    <h5 class="card-title"></h5>
+                                    <p class="card-text"></p>
+                                    <p class="card-text"></p>
                                 </div>
                             </div>
                         </div>
