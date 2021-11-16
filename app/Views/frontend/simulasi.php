@@ -1,61 +1,29 @@
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
 
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+<div class="container py-5 mt-5">
+<table class="ui celled table text-center" style="width:100%" id="DataT">
+                        <thead>
+                          <tr>
+                            <th> No </th>
+                            <th> Jenis Simulasi Kredit </th>
+                            <th> Deskripsi </th>
+                            <th> Cicilan </th>
+                            <th> Bunga Pinjaman </th>
+                            <th> Uang Muka (DP) </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <?php 
+                        $i = 1;
+                        foreach($skredit as $row) :?>
+                                <tr>
+                                <td><?= $i++?></td>
+                                <td><?= $row->jenis_kredit;?></td>
+                                <td><?= $row->deskripsi ?></td>
+                                <td><?= $row->tenor ?> bulan</td>
+                                <td><?= $row->bunga_pinjaman ?> %</td>
+                                <td><?= $row->uang_muka ?> %</td>
+                          </tr>
+                          <?php endforeach ;?>
+                        </tbody>
+                      </table>
+</div>

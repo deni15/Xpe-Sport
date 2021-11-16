@@ -29,44 +29,26 @@
             </div>
             <hr>
             <div class="container">
-                <div class="row row-cols-1 row-cols-md-4 g-4">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <?php foreach($produk as $row) {?>
                     <div class="col">
-                        <div class="card h-100">
-                        <img src="<?php base_url() ?>/public/assets/images/produk_foto/mrcdz.png">
+                        <div class="card">
+                            <?php if($row->gambar==''){?>
+                                <img src="<?= base_url()?>/assets/images/produk_foto/default-product.jpg" class="card-img-top" alt="...">
+                            <?php }else { ?>
+                                <img src="<?= base_url()?>/assets/images/produk_foto/<?= $row->gambar;?>" class="card-img-top" alt="...">
+                            <?php } ?>
                         <div class="card-body">
-                            <h5 class="card-title">Mercedes-benz</h5>
-                            <p class="card-text"></p>
-                            <a href="" class="btn btn-success rounded-circle"><i class="mdi mdi-whatsapp"></i></a>
+                            <h5 class="card-title"><?= $row->nama_produk ?></h5>
+                            <h6 class="card-text"><?= $row->type_produk ?></h6>
+                            <span class="ms-auto badge bg-secondary"><?= $row->warna ?></span>
+                            <h6 class="card-text text-secondary">Rp.<?= $row->harga ?></h6>
+
+                            <a href="" class="btn btn-success form-control"><i class="mdi mdi-whatsapp h5"></i></a>
                         </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card h-100">
-                        <img src="<?php base_url() ?>/public/assets/images/produk_foto/m2.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Mrcedez Benz</h5>
-                            <p class="card-text"></p>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                        <img src="<?php base_url() ?>/public/assets/images/produk_foto/mrcdz.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Marcedez Benz</h5>
-                            <p class="card-text"></p>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                        <img src="<?php base_url() ?>/public/assets/images/produk_foto/m2.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Marcedez</h5>
-                            <p class="card-text"></p>
-                        </div>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

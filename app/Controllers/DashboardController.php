@@ -3,9 +3,24 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\ProdukModel;
+use App\Models\ModelSimulasiKredit;
 
 class DashboardController extends BaseController
 {
+	protected $ProdukModel;
+	protected $ModelSimulasiKredit;
+
+    public function __construct() {
+ 
+        // Memanggil form helper
+        helper('form');
+		$this->form_validation = \Config\Services::validation();
+        // Menyiapkan variabel untuk menampung upload model
+        $this->ProdukModel = new ProdukModel();
+        $this->ModelSimulasiKredit = new ModelSimulasiKredit();
+    }
+
 	public function index()
 	{
 		$data = [
@@ -18,10 +33,13 @@ class DashboardController extends BaseController
 
 	public function vehicles()
 	{
+		$produk = new ProdukModel();
 		$data = [
+			'produk' => $produk->findAll(),
 			'title' => 'Our Vehicles',
 			'judul'	=> 'Our Vehicles'
 		];
+		// dd($data);
 		echo view('template/frontendTemplate/headerdetail',$data);
 		echo view('frontend/OurVehicles', $data);
 		echo view('template/frontendTemplate/footer');
@@ -51,7 +69,9 @@ class DashboardController extends BaseController
 
 	public function simulasi()
 	{
+		$simulasi = new ModelSimulasiKredit();
 		$data = [
+			'skredit' => $simulasi->findAll(),
 			'title' => 'Simulasi Kredit',
 			'judul'	=> 'Simulasi Kredit'
 		];
