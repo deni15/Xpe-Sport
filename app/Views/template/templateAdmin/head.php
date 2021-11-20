@@ -179,7 +179,7 @@
               </a>
               <div class="collapse" id="ui-basic2">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/SettingController/item_gambar">Item Gambar</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/SettingController/create">Item Gambar</a></li>
                   <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/SettingController/sosial_media">Sosial Media</a></li>
                 </ul>
               </div>

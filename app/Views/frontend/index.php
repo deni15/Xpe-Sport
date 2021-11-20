@@ -4,6 +4,7 @@
         <div class="jumbotron mb-0 p-0 mt-5">
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
+<<<<<<< HEAD
                 <div class="carousel-item active">
                     <img src="<?php base_url() ?>/assets/images/banner/slider1.jpg" class="d-block w-100" alt="...">
                     </div>
@@ -13,6 +14,19 @@
                     <div class="carousel-item">
                     <img src="<?php base_url() ?>/assets/images/banner/slider3.jpg" class="d-block w-100" alt="...">
                 </div>
+=======
+                <?php foreach($slider as $row):?>
+                <div class="carousel-item active">
+                    <img src="<?= base_url() ?>/assets/images/item gambar/<?= $row->slider1 ?>" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="<?= base_url() ?>/assets/images/item gambar/<?= $row->slider2 ?>" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="<?= base_url() ?>/assets/images/item gambar/<?= $row->slider3 ?>" class="d-block w-100" alt="...">
+                </div>
+                <?php endforeach;?>
+>>>>>>> eva
             </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -63,9 +77,16 @@
         <div class="jumbotron mb-0 p-0 bg-black-solid">
             <div class="container p-4">
             <div class="row">
+<<<<<<< HEAD
                 <div class="col-lg-7 col-md-7 col-sm-12m-0 p-0">
                     <div class="card bg-dark text-white rounded-0">
                         <img src="<?php base_url() ?>/assets/images/banner/galeri1.jpg" class="card-img rounded-0" alt="...">
+=======
+                <?php foreach($slider as $row):?>
+                <div class="col-lg-7 col-md-7 col-sm-12m-0 p-0">
+                    <div class="card bg-dark text-white rounded-0">
+                        <img src="<?php base_url() ?>/assets/images/item gambar/<?php echo $row->card1?>" class="card-img rounded-0" alt="...">
+>>>>>>> eva
                         <div class="card-img-overlay">
                             <h5 class="card-title"></h5>
                             <p class="card-text"></p>
@@ -77,7 +98,11 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card bg-dark text-white rounded-0">
+<<<<<<< HEAD
                                 <img src="<?php base_url() ?>/assets/images/banner/galeri2 (1).jpg" class="card-img rounded-0" alt="...">
+=======
+                                <img src="<?php base_url() ?>/assets/images/item gambar/<?php echo $row->card2?>" class="card-img rounded-0" alt="...">
+>>>>>>> eva
                                 <div class="card-img-overlay">
                                     <h5 class="card-title"></h5>
                                     <p class="card-text"></p>
@@ -87,7 +112,11 @@
                         </div>
                         <div class="col-12">
                         <div class="card bg-dark text-white rounded-0">
+<<<<<<< HEAD
                                 <img src="<?php base_url() ?>/assets/images/banner/galeri3.jpg" class="card-img rounded-0" alt="...">
+=======
+                                <img src="<?php base_url() ?>/assets/images/item gambar/<?= $row->card3?>" class="card-img rounded-0" alt="...">
+>>>>>>> eva
                                 <div class="card-img-overlay">
                                     <h5 class="card-title"></h5>
                                     <p class="card-text"></p>
@@ -95,6 +124,10 @@
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
+=======
+                        <?php endforeach;?>
+>>>>>>> eva
                     </div>
                 </div>
             </div>

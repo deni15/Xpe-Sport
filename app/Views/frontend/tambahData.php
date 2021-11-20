@@ -98,7 +98,7 @@
                                     <?= $validation->getError('card3');?>
                                 </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">Tambah Data</button>
+                                <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">Update Data</button>
                             </div>
                         </div>
                         </form>

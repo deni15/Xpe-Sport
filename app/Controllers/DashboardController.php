@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\ProdukModel;
 use App\Models\ModelSimulasiKredit;
+use App\Models\ModelSlider;
 
 class DashboardController extends BaseController
 {
@@ -23,7 +24,9 @@ class DashboardController extends BaseController
 
 	public function index()
 	{
+		$slider = new ModelSlider();
 		$data = [
+			'slider' => $slider->findAll(),
 			'title' => 'Home'
 		];
 		echo view('template/frontendTemplate/header',$data);
