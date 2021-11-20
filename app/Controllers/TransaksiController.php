@@ -6,6 +6,8 @@ use App\Models\ProdukModel;
 use App\Models\ModelTransaksi;
 use App\Models\ModelCustomer;
 use App\Models\ModelSimulasiKredit;
+use App\Models\ModelCreditDetail;
+use App\Models\ModelCashDetail;
 
 use App\Controllers\BaseController;
 
@@ -14,6 +16,8 @@ class TransaksiController extends BaseController
     protected $ModelPengguna;
     protected $ProdukModel;
     protected $ModelSimulasiKredit;
+    protected $ModelCreditDetail;
+    protected $ModelCashDetail;
  
     public function __construct() {
         $this->ModelPengguna = new ModelUser();
@@ -21,17 +25,34 @@ class TransaksiController extends BaseController
         $this->ProdukModel = new ProdukModel();
         $this->ModelSimulasiKredit = new ModelSimulasiKredit();
         $this->ModelCustomer = new ModelCustomer();
+        $this->ModelCreditDetail = new ModelCreditDetail();
+        $this->ModelCashDetail = new ModelCashDetail();
 
     }
 
     public function index()
+    {
+        $data['transaksi'] = $this->ModelTransaksi->getDataTransaksiAll();
+       // dd($data['transaksi']);
+        $session = session()->get('username');
+		if(!empty($session)){
+			$data['title'] = 'List Data Transaksi';
+				   echo view('template/templateAdmin/head',$data);
+				   echo view('content/transaksi/dataTransaksi',$data);
+				   echo view('template/templateAdmin/foot');
+		}else{
+		session()->setFlashdata('success', 'Waktu Anda telah berakhir, silahkan Masuk kembali');
+			return redirect()->to('/');
+		}
+    }
+
+    public function create()
     {
         $users = new ModelUser();
         $produk = new ProdukModel();
         $simulasikredit = new ModelSimulasiKredit();
         $data['users'] = $users->findAll();
         $data['skredit'] = $simulasikredit->findAll();
-        // dd($data['users']);
         $data['produk'] = $produk->findAll();
 
         $session = session()->get('username');
@@ -48,9 +69,8 @@ class TransaksiController extends BaseController
 
     public function save()
     {
-        dd($this->request->getVar());
-        
-  
+        //dd($this->request->getVar());
+
         //inialisasi
         $metodebayar    = $this->request->getVar('metodebayar');
         $product_id     = $this->request->getVar('product_id');
@@ -70,8 +90,8 @@ class TransaksiController extends BaseController
         $cicilan        = $this->request->getVar('cicilan');
         $provisi        = $this->request->getVar('provisi');
         $asuransi       = $this->request->getVar('asuransi');
-        $angsuran_bunga = $this->request->getVar('angsuran_bunga');
-        $angsuran_pokok = $this->request->getVar('angsuran_pokok');
+        $asuransi_bunga = $this->request->getVar('angsuran_bunga');
+        $asuransi_pokok = $this->request->getVar('angsuran_pokok');
         $totalpinjaman  = $this->request->getVar('totalpinjaman');
         $administrasi   = $this->request->getVar('administrasi');
         $pinjamanpolis  = $this->request->getVar('pinjamanpolis');
@@ -84,10 +104,10 @@ class TransaksiController extends BaseController
         //dd($skredit);
         //mengambil data sales
         $sales = $this->ModelPengguna->find($sales_id);
-        dd($sales);
+       // dd($sales);
 
 
-        if($data->metodebayar == 2 ){
+        if($metodebayar == 2 ){
             if(!$this->validate([
                 'metodebayar'	=> 'required|trim',
                 'product_id'    => 'required|trim',
@@ -117,17 +137,19 @@ class TransaksiController extends BaseController
 
                 //save data pembeli dahulu
                 $dataPembeli = [
-                    'skredit_id' => $skredit_id,
-                    'fullname'   => $nama_pembeli,
-                    'email'      => $email,
+                    'skredit_id' => intval($skredit_id),
+                    'customer_name'   => $nama_pembeli,
+                    'email_customer'      => $email,
                     'alamat'     => $alamat
                 ];
 
                 $dataSavePembeli = $this->ModelCustomer->insert($dataPembeli);
 
+                //dd($dataSavePembeli);
+
                 //update data produk
                 $dataProduk = [
-                    'stok'       => $stok - 1,
+                    'stok'       => intval($stok) - 1,
                     'updated_at' => time()
                 ];
                 $dataSaveProduk = $this->ProdukModel->update($product_id, $dataProduk);
@@ -135,47 +157,140 @@ class TransaksiController extends BaseController
                 //save data Detail Transaksi
                 $dataTransaksi = [
                     'invoice'	    => 'INV/EXPS/'.date('Y/m/d/H/i/s'),
-                    'metodebayar'	=> $metodebayar,
-                    'product_id'    => $product_id,
-                    'skredit_id'    => $skredit_id,
-                    'operator_id'   => $operator_id,
-                    'sales_id'      => $sales_id,
-                    'dpkredit'	    => $dpkredit,
-                    'id_pembeli'	=> $dataSavePembeli->id,
-                    'bayarawal'     => $bayarawal,
-                    'totalbayar'    => $totalbayar,
+                    'metode_bayar'	=> $metodebayar,
+                    'id_produk'     => intval($product_id),
+                    'id_skredit'    => intval($skredit_id),
+                    'id_operator'   => intval($operator_id),
+                    'id_sales'      => intval($sales_id),
+                    'id_pembeli'	=> $dataSavePembeli,
+                    'jumlah_beli'	=> 1,
+                    'dpkredit'	    => intval($dpkredit),
+                    'bayar_awal'    => intval($bayarawal),
+                    'totalbayar'    => intval($totalbayar),
                     'created_at'	=> time(),
                 ];
                 
                 $dataSaveTransaksi = $this->ModelTransaksi->insert($dataTransaksi);
 
+               // dd($dataSaveTransaksi);
+
                 //save data Detail Credit
                 $dataCredit = [
-                    'id_transaksi'	=> $dataSaveTransaksi->id,
-                    'product_id'    => $product_id,
-                    'skredit_id'    => $skredit_id,
-                    'operator_id'   => $operator_id,
-                    'sales_id'      => $sales_id,
-                    'dpkredit'	    => $dpkredit,
-                    'id_pembeli'	=> $id_pembeli,
-                    'bayarawal'     => $bayarawal,
-                    'totalbayar'    => $totalbayar,
-                    'cicilan'       => $cicilan,
-                    'provisi'       => $provisi,
-                    'asuransi'      => $asuransi,
-                    'angsuran_bunga'=> $angsuran_bunga,
-                    'angsuran_pokok'=> $angsuran_pokok,
-                    'totalpinjaman' => $totalpinjaman,
-                    'pinjampolis'   => $pinjamanpolis,
+                    'id_transaksi'	=> $dataSaveTransaksi,
+                    'id_produk'     => intval($product_id),
+                    'id_skredit'    => intval($skredit_id),
+                    'id_operator'   => intval($operator_id),
+                    'id_sales'      => intval($sales_id),
+                    'id_pembeli'	=> $dataSavePembeli,
+                    'dpkredit'	    => intval($dpkredit),
+                    'jumlah_beli'   => 1,
+                    'bayar_awal'    => intval($bayarawal),
+                    'totalbayar'    => intval($totalbayar),
+                    'cicilan'       => intval($cicilan),
+                    'provisi'       => intval($provisi),
+                    'asuransi'      => intval($asuransi),
+                    'asuransi_bunga'=> intval($asuransi_bunga),
+                    'asuransi_pokok'=> intval($asuransi_pokok),
+                    'total_pinjaman'=> intval($totalpinjaman),
+                    'pinjaman_polis'=> intval($pinjamanpolis),
+                    'administrasi'  => intval($administrasi),
                     'created_at'	=> time(),
                 ];
 
                 $dataSaveCredit= $this->ModelCreditDetail->insert($dataCredit);
+               // dd($dataSaveCredit);
     
                 session()->setFlashdata('success', 'Tambah Data Produk Berhasil');
-                return redirect()->to(base_url('/KreditController/'));
+                return redirect()->to(base_url('/TransaksiController/'));
             }
-         }else{
+        }else{
+            //pembelian cash
+            if(!$this->validate([
+                'metodebayar'	=> 'required|trim',
+                'product_id'    => 'required|trim',
+                'operator_id'   => 'required|trim',
+                'nama_pembeli'	=> 'required|trim',
+                'email'         => 'required|trim',
+                'alamat'	    => 'required|trim',
+                'stok'	        => 'required|trim',
+                'harga_modal'   => 'required|trim|numeric',
+                'harga_jual'    => 'required|trim|numeric',
+                'bayarawal'     => 'required|trim|numeric',
+                'totalbayar'    => 'required|trim|numeric'
+            ])){
+                //session();
+                $data1['validation'] = \Config\Services::validation();
+                //dd($validation);
+                $session = session()->get('username');
+                if(!empty($session)){
+                    return redirect()->to('/TransaksiController/create')->withInput();
+                }else{
+                session()->setFlashdata('success', 'Waktu Anda telah berakhir, silahkan Masuk kembali');
+                    return redirect()->to('/');
+                }
+            }else{
+
+                //save data pembeli dahulu
+                $dataPembeli = [
+                    // 'skredit_id' => intval($skredit_id),
+                    'customer_name'   => $nama_pembeli,
+                    'email_customer'      => $email,
+                    'alamat'     => $alamat
+                ];
+
+                $dataSavePembeli = $this->ModelCustomer->insert($dataPembeli);
+
+                //dd($dataSavePembeli);
+
+                //update data produk
+                $dataProduk = [
+                    'stok'       => intval($stok) - 1,
+                    'updated_at' => time()
+                ];
+                $dataSaveProduk = $this->ProdukModel->update($product_id, $dataProduk);
+
+                //save data Detail Transaksi
+                $dataTransaksi = [
+                    'invoice'	    => 'INV/EXPS/'.date('Y/m/d/H/i/s'),
+                    'metode_bayar'	=> $metodebayar,
+                    'id_produk'     => intval($product_id),
+                    'id_skredit'    => intval($skredit_id),
+                    'id_operator'   => intval($operator_id),
+                    'id_sales'      => intval($sales_id),
+                    'id_pembeli'	=> $dataSavePembeli,
+                    'jumlah_beli'	=> 1,
+                    'bayar_awal'    => intval($bayarawal),
+                    'totalbayar'    => intval($totalbayar),
+                    'created_at'	=> time(),
+                ];
+                
+                $dataSaveTransaksi = $this->ModelTransaksi->insert($dataTransaksi);
+
+               // dd($dataSaveTransaksi);
+
+                //save data Detail Credit
+                $dataCash = [
+                    'id_transaksi'	=> $dataSaveTransaksi,
+                    'id_produk'     => intval($product_id),
+                    'id_operator'   => intval($operator_id),
+                    'id_sales'      => intval($sales_id),
+                    'id_pembeli'	=> $dataSavePembeli,
+                    'jumlah_beli'   => 1,
+                    'bayar_awal'    => intval($bayarawal),
+                    'totalbayar'    => intval($totalbayar),
+                    'asuransi'      => intval($asuransi),
+                    'pinjaman_polis'=> intval($pinjamanpolis),
+                    'administrasi'  => intval($administrasi),
+                    'created_at'	=> time(),
+                ];
+                //dd($dataCash);
+
+                $dataSaveCash= $this->ModelCashDetail->insert($dataCash);
+               // dd($dataSaveCredit);
+    
+                session()->setFlashdata('success', 'Tambah Data Produk Berhasil');
+                return redirect()->to(base_url('/TransaksiController/'));
+            }
 
 
         }

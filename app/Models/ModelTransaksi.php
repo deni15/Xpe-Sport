@@ -6,29 +6,25 @@ use CodeIgniter\Model;
 
 class ModelTransaksi extends Model
 {
-    protected $DBGroup              = 'default';
-    protected $table                = 'modeltransaksis';
-    protected $primaryKey           = 'id';
-    protected $useAutoIncrement     = true;
-    protected $insertID             = 0;
-    protected $returnType           = 'array';
-    protected $useSoftDeletes       = false;
-    protected $protectFields        = true;
-    protected $allowedFields        = [];
+    protected $table = "transaksi";
+    protected $primaryKey = "id";
+    protected $returnType = "object";
+    protected $useTimestamps = true;
+    protected $allowedFields = ['id','invoice','metode_bayar','id_produk','id_sales',
+                                'id_skredit','id_operator','id_pembeli','dpkredit',
+                                'jumlah_beli','bayar_awal', 'totalbayar'];
 
+    public function getDataTransaksiAll()
+    {
+        $query = $this->db->table('transaksi')
+        // ->join('cash','cash.id_transaksi=transaksi.id')
+        // ->join('credit', 'creadit.id_transaksi=transaksi.id')
+        ->join('produk', 'produk.id=transaksi.id_produk')
+        ->join('users', 'users.id=transaksi.id_sales')
+        ->join('master_customer', 'master_customer.id=transaksi.id_pembeli')
+        ->get()->getResult();  
 
-    function get_no_invoice(){
-        $q = $this->db->query("SELECT MAX(RIGHT(no_invoice,4)) AS kd_max FROM tbl_invoice WHERE DATE(tanggal)=CURDATE()");
-        $kd = "";
-        if($q->num_rows()>0){
-            foreach($q->result() as $k){
-                $tmp = ((int)$k->kd_max)+1;
-                $kd = sprintf("%04s", $tmp);
-            }
-        }else{
-            $kd = "0001";
-        }
-        date_default_timezone_set('Asia/Jakarta');
-        return date('dmy').$kd;
-    }
+        return $query;
+    }                                    
+
 }

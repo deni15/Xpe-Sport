@@ -576,6 +576,11 @@
                       $('#asuransi').val(data.asuransi);
                       $('#cicilan').val(data.cicilan);
                       $('#provisi').val(data.provisi);
+                      $('#angsuran_bunga').val(data.angsuran_bunga);
+                      $('#angsuran_pokok').val(data.angsuran_pokok);
+                      $('#totalpinjaman').val(data.totalpinjam);
+                      $('#administrasi').val(data.administrasi);
+                      $('#pinjamanpolis').val(data.asuransipolis);
 
                     // document.getElementById("teww").innerHTML +="NIM :" + data.id ;
                   },

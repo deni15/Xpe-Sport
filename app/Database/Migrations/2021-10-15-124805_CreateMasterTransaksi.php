@@ -15,6 +15,16 @@ class CreateMasterTransaksi extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+			'invoice'       => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 50,
+                'null'           => true,
+            ],
+			'metode_bayar'       => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 50,
+                'null'           => true,
+            ],
 			'id_produk'       => [
                 'type'           => 'INT',
                 'constraint'     => 11,
@@ -25,19 +35,35 @@ class CreateMasterTransaksi extends Migration
                 'constraint'     => 11,
                 'null'           => true,
             ],
-			'total_harga'       => [
+			'id_skredit'       => [
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'null'           => true,
+            ],
+			'id_operator'       => [
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'null'           => true,
+            ],
+			'id_pembeli'       => [
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'null'           => true,
+            ],
+			'dpkredit'       => [
                 'type'           => 'BIGINT',
+                'null'           => true,
             ],
             'jumlah_beli'       => [
-                'type'           => 'VARCHAR',
-                'constraint'     => '255',
-            ],
-			'diskon'       => [
                 'type'           => 'BIGINT',
+                'null'           => true,
             ],
-            'carabayar' => [
-                'type'           => 'VARCHAR',
-                'constraint'     => '255',
+			'bayar_awal'       => [
+                'type'           => 'BIGINT',
+                'null'           => true,
+            ],
+            'totalbayar' => [
+                'type'           => 'BIGINT',
                 'null'           => true,
             ],
             'created_at' => [
