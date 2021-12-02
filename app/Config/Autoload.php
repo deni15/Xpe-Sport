@@ -80,5 +80,5 @@ class Autoload extends AutoloadConfig
 	 * ```
 	 * @var array<int, string>
 	 */
-	public $files = ['database','session'];
+	public $files = ['database','session','url'];
 }

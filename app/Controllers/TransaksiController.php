@@ -46,6 +46,38 @@ class TransaksiController extends BaseController
 		}
     }
 
+    public function indexcash()
+    {
+        $data['transaksi'] = $this->ModelTransaksi->getDataTransaksiCash();
+       // dd($data['transaksi']);
+        $session = session()->get('username');
+		if(!empty($session)){
+			$data['title'] = 'List Data Transaksi Cash';
+				   echo view('template/templateAdmin/head',$data);
+				   echo view('content/transaksi/dataCash',$data);
+				   echo view('template/templateAdmin/foot');
+		}else{
+		session()->setFlashdata('success', 'Waktu Anda telah berakhir, silahkan Masuk kembali');
+			return redirect()->to('/');
+		}
+    }
+
+    public function indexcredit()
+    {
+        $data['transaksi'] = $this->ModelTransaksi->getDataTransaksiCredit();
+       // dd($data['transaksi']);
+        $session = session()->get('username');
+		if(!empty($session)){
+			$data['title'] = 'List Data Transaksi Credit';
+				   echo view('template/templateAdmin/head',$data);
+				   echo view('content/transaksi/dataCredit',$data);
+				   echo view('template/templateAdmin/foot');
+		}else{
+		session()->setFlashdata('success', 'Waktu Anda telah berakhir, silahkan Masuk kembali');
+			return redirect()->to('/');
+		}
+    }
+
     public function create()
     {
         $users = new ModelUser();
@@ -169,7 +201,7 @@ class TransaksiController extends BaseController
                     'totalbayar'    => intval($totalbayar),
                     'created_at'	=> time(),
                 ];
-                
+                //dd($dataTransaksi);
                 $dataSaveTransaksi = $this->ModelTransaksi->insert($dataTransaksi);
 
                // dd($dataSaveTransaksi);
@@ -199,9 +231,38 @@ class TransaksiController extends BaseController
 
                 $dataSaveCredit= $this->ModelCreditDetail->insert($dataCredit);
                // dd($dataSaveCredit);
-    
-                session()->setFlashdata('success', 'Tambah Data Produk Berhasil');
-                return redirect()->to(base_url('/TransaksiController/'));
+
+                 // mangambil data
+                 $product = $this->ProdukModel->find(intval($product_id));
+                 $salesman = $this->ModelPengguna->find(intval($sales_id));
+                 //dd($product);
+                 $datastruk = [
+                         'title'         =>  'Struk Transksi',
+                         'invoice'       =>   $dataTransaksi['invoice'],
+                         'tgl_transaksi' =>   date('d-m-y H:i:s', $dataTransaksi['created_at']),
+                         'customer'      =>   $nama_pembeli,
+                         'email'         =>   $email,
+                         'alamat'        =>   $alamat,
+                         'metodebayar'   =>   $metodebayar,
+                         'nama_produk'   =>   $product->nama_produk,
+                         'type_produk'   =>   $product->type_produk,
+                         'warna'         =>   $product->warna,
+                         'hargaItem'     =>   $product->harga,
+                         'namasales'     =>   $salesman->fullname,
+                         'asuransi'      =>   $asuransi,
+                         'provisi'       =>   $provisi,
+                         'cicilan'       =>   $cicilan,
+                         'angsuran_bunga'=>   $asuransi_bunga,
+                         'angsuran_pokok'=>   $asuransi_pokok,
+                         'dpkredit'      =>   $dpkredit,
+                         'asuransipolis' =>   $pinjamanpolis,
+                         'subtotal'      =>   $bayarawal,
+                         'potongan'      =>   $potongan,
+                         'totalharga'    =>   $totalbayar,
+                     ];
+ 
+     
+                 echo view('content/struk/struk-transksi',$datastruk);
             }
         }else{
             //pembelian cash
@@ -263,7 +324,7 @@ class TransaksiController extends BaseController
                     'totalbayar'    => intval($totalbayar),
                     'created_at'	=> time(),
                 ];
-                
+                //dd($dataTransaksi);
                 $dataSaveTransaksi = $this->ModelTransaksi->insert($dataTransaksi);
 
                // dd($dataSaveTransaksi);
@@ -287,9 +348,35 @@ class TransaksiController extends BaseController
 
                 $dataSaveCash= $this->ModelCashDetail->insert($dataCash);
                // dd($dataSaveCredit);
+
+                // mangambil data
+                $product = $this->ProdukModel->find(intval($product_id));
+                $salesman = $this->ModelPengguna->find(intval($sales_id));
+                //dd($product);
+                $datastruk = [
+                        'title'         =>  'Struk Transksi',
+                        'invoice'       =>   $dataTransaksi['invoice'],
+                        'tgl_transaksi' =>   date('d-m-y H:i:s', $dataTransaksi['created_at']),
+                        'customer'      =>   $nama_pembeli,
+                        'email'         =>   $email,
+                        'alamat'        =>   $alamat,
+                        'metodebayar'   =>   $metodebayar,
+                        'nama_produk'   =>   $product->nama_produk,
+                        'type_produk'   =>   $product->type_produk,
+                        'warna'         =>   $product->warna,
+                        'hargaItem'     =>   $product->harga,
+                        'namasales'     =>   $salesman->fullname,
+                        'asuransi'      =>   $asuransi,
+                        'asuransipolis' =>   $pinjamanpolis,
+                        'subtotal'      =>   $bayarawal,
+                        'potongan'      =>   $potongan,
+                        'totalharga'    =>   $totalbayar,
+                    ];
+
     
-                session()->setFlashdata('success', 'Tambah Data Produk Berhasil');
-                return redirect()->to(base_url('/TransaksiController/'));
+                echo view('content/struk/struk-transksi',$datastruk);
+            
+    
             }
 
 

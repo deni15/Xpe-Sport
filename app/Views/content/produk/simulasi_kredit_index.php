@@ -12,11 +12,12 @@
                       </ol>
                     </div>
                     <!-- end breadcum -->
-                    <?php if (!empty(session()->getFlashdata('success'))) : ?>
+                    <?php if (!empty(session()->getFlashdata('success'))){ ?>
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <?php echo session()->getFlashdata('success'); ?>
-                    </div>
-                    <?php endif; ?>
+                      </div>
+                      <?php }?>
+                      <div class="swal" data-swal="<?= session()->getFlashdata('success') ?>"></div>
                   </div>
                 </div>
 
@@ -25,7 +26,8 @@
                     <div class="row">
                             <div class="col-lg-2">
                               <a href="<?= site_url('KreditController/create') ?>" class="btn btn-primary btn-md form-control"><i class="mdi mdi-plus menu-icon"></i><i class="mdi mdi-account menu-icon"></i></a>
-                                </div>
+                                <!-- //<button class="btn btn-light" onclick="Swal.fire()">test</button> -->
+                            </div>
                                   <div class="col-lg-10">
                                 </div>
                         </div>
@@ -112,4 +114,5 @@
   $(document).ready(function() {
     $('#DataT').DataTable();
 } );
+
 </script>

@@ -255,9 +255,9 @@ class PenggunaController extends BaseController
 		//cari gambar berdasarkan id
 		$user = $this->ModelPengguna->find($id);
 		// cek gambar default
-		if($user['gambar'] != 'default-user.jpg'){
+		if($user->gambar != 'default-user.jpg'){
 			//hapus gambar
-			untink('assets/images/faces' . $user['gambar'] );
+			unlink('assets/images/faces' . $user['gambar'] );
 		}
 		//delete data
 		$this->ModelPengguna->delete($id);

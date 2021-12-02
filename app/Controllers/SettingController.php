@@ -35,7 +35,7 @@ class SettingController extends BaseController
 				$slider1 = $this->request->getFile('slider1');
                 if($slider1->getError() == 4){
 					//meenggunakan default gambar
-					$namaslider1 = 'default banner.jpg';
+					$namaslider1 = 'slider1.jpg';
 				}else{
                     $namaslider1 = $slider1->getRandomName();
                     $slider1->move('assets/images/item gambar', $namaslider1);
@@ -44,6 +44,7 @@ class SettingController extends BaseController
 				$slider2 = $this->request->getFile('slider2');
                 if($slider2->getError() == 4){
 					//meenggunakan default gambar
+					$namaslider1 = 'slider2.jpg';
 				}else{
                     $namaslider2 = $slider2->getRandomName();
                     $slider2->move('assets/images/item gambar', $namaslider2);
@@ -52,18 +53,17 @@ class SettingController extends BaseController
                 $slider3 = $this->request->getFile('slider3');
                 if($slider3->getError() == 4){
 					//meenggunakan default gambar
-					$namaslider3 = 'default banner.jpg';
+					$namaslider3 = 'slider3.jpg';
 				}else{
                     $namaslider3 = $slider3->getRandomName();
 				    $slider3->move('assets/images/item gambar', $namaslider3);
 				}
 				
-                
-// Gambar Slider
+				// Gambar Slider
 				$card1 = $this->request->getFile('card1');
                 if($card1->getError() == 4){
 					//meenggunakan default gambar
-					$namacard1 = 'default banner.jpg';
+					$namacard1 = 'galeri1.jpg';
 				}else{
                     $namacard1 = $card1->getRandomName();
                     $card1->move('assets/images/item gambar', $namacard1);
@@ -72,6 +72,7 @@ class SettingController extends BaseController
 				$card2 = $this->request->getFile('card2');
                 if($card2->getError() == 4){
 					//meenggunakan default gambar
+					$namacard1 = 'galeri2.jpg';
 				}else{
                     $namacard2 = $card2->getRandomName();
                     $card2->move('assets/images/item gambar', $namacard2);
@@ -80,7 +81,7 @@ class SettingController extends BaseController
                 $card3 = $this->request->getFile('card3');
                 if($card3->getError() == 4){
 					//meenggunakan default gambar
-					$namacard3 = 'default banner.jpg';
+					$namacard1 = 'galeri3.jpg';
 				}else{
                     $namacard3 = $card3->getRandomName();
 				    $card3->move('assets/images/item gambar', $namacard3);
@@ -111,7 +112,7 @@ class SettingController extends BaseController
 			// dd($data);
             $this->ModelSlider->update(1,$data);
 
-			session()->setFlashdata('success', 'Tambah Data Produk Berhasil');
+			session()->setFlashdata('success', 'Tambah Data Setting Berhasil');
 			return redirect()->to(base_url('home'));
 	}
 

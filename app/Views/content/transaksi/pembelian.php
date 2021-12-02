@@ -7,7 +7,8 @@
                         <div aria-label="breadcrumb border-0">
                         <ol class="breadcrumb border-0 p-0">
                             <li class="breadcrumb-item"><a href="<?php base_url()?>/home">Dashboard</a></li>
-                            <li class="breadcrumb-item active" >Transaksi Pembelian</li>
+                            <li class="breadcrumb-item " ><a href="<?php base_url()?>/TransaksiController">List Transaksi</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Transaksi Pembelian</li>
                         </ol>
                         </div>
                         <!-- end breadcum -->
@@ -20,10 +21,9 @@
                             <form action="<?= site_url('TransaksiController/save')?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field();?>
                               <div class="form-group">
-                                <label for="produk" class="card-text">Metode Bayar :</label>
+                                <label for="produk" class="card-text">Pilih Metode Bayar :</label>
                               <div class="input-group">
                                   <select onchange="selected()" name="metodebayar"  class="custom-select" id="inputGroupSelect04">
-                                    <option selected>-- Pilih Metode Bayar --</option>
                                     <option value="1">Cash</option>
                                     <option value="2">Credit</option>
                                   </select>
@@ -107,7 +107,7 @@
                                       <div class="input-group-prepend">
                                           <span class="input-group-text" id="">Rp</span>
                                         </div>
-                                      <input  type="number" name="dpkredit" class="form-control"   id="skreditDp">
+                                      <input  type="number" disabled name="dpkredit" class="form-control"   id="skreditDp">
                                     </div>
                                   </td>
                                 </tr>
@@ -126,10 +126,7 @@
                         <div class="table-responsive">
                           <table class="table table-borderless table-ms">
                               <thead>
-                                <tr>
-                                  <th>Nama Sales :</th>
-                                  <th id="salesName"></th>
-                                </tr>
+      
                               </thead>
                             </table>
                             </div>
@@ -437,6 +434,7 @@
         if(paymenttype == 2){
             $('#kredit').show();
             $('#carabayar').text('Credit');
+            $('#skreditDp').attr("disabled", false);
             buttonFindSkredit(idx);
         }else{
             $('#kredit').hide();
@@ -445,6 +443,7 @@
             $('#skreditTenor').text('');
             $('#skreditBunga').text('')
             $('#skreditDp').val(0);
+            $('#skreditDp').attr("disabled", true);
         }
     }
 
@@ -573,6 +572,7 @@
                   success:function(data){
                       console.log(data);
                       $('.subtotall').val(data.subtotal);
+                      $('#total').val(data.subtotal);
                       $('#asuransi').val(data.asuransi);
                       $('#cicilan').val(data.cicilan);
                       $('#provisi').val(data.provisi);

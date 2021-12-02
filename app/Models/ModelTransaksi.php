@@ -25,6 +25,34 @@ class ModelTransaksi extends Model
         ->get()->getResult();  
 
         return $query;
+    }       
+                                 
+    public function getDataTransaksiCash()
+    {
+        $query = $this->db->table('transaksi')
+        // ->join('cash','cash.id_transaksi=transaksi.id')
+        // ->join('credit', 'creadit.id_transaksi=transaksi.id')
+        ->join('produk', 'produk.id=transaksi.id_produk')
+        ->join('users', 'users.id=transaksi.id_sales')
+        ->join('master_customer', 'master_customer.id=transaksi.id_pembeli')
+        ->where('metode_bayar', 1)
+        ->get()->getResult();  
+
+        return $query;
+    }        
+
+    public function getDataTransaksiCredit()
+    {
+        $query = $this->db->table('transaksi')
+        // ->join('cash','cash.id_transaksi=transaksi.id')
+        // ->join('credit', 'creadit.id_transaksi=transaksi.id')
+        ->join('produk', 'produk.id=transaksi.id_produk')
+        ->join('users', 'users.id=transaksi.id_sales')
+        ->join('master_customer', 'master_customer.id=transaksi.id_pembeli')
+        ->where('metode_bayar', 2)
+        ->get()->getResult();  
+
+        return $query;
     }                                    
 
 }

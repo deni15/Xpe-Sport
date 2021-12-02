@@ -7,9 +7,8 @@
                     <!-- breadcum -->
                     <div aria-label="breadcrumb border-0">
                       <ol class="breadcrumb border-0 p-0">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="#">Trasaksi</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">List Transaksi</li>
+                        <li class="breadcrumb-item"><a href="<?php base_url()?>/home">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="<?php base_url()?>/TransaksiController">List Transaksi</a></li>
                       </ol>
                     </div>
                     <!-- end breadcum -->
@@ -18,6 +17,7 @@
                         <?php echo session()->getFlashdata('success'); ?>
                     </div>
                     <?php endif; ?>
+                    <div class="swal" data-swal="<?= session()->getFlashdata('success') ?>"></div>
                   </div>
                 </div>
 

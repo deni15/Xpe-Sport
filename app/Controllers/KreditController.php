@@ -101,7 +101,10 @@ class KreditController extends BaseController
 			//dd($data);
             $this->ModelSimulasiKredit->insert($data);
 
-			session()->setFlashdata('success', 'Tambah Data Produk Berhasil');
+			session()->setFlashdata([
+				'success'	=> 'Tambah Data Produk Berhasil',
+				'error'		=> 'Data Gagal Disimpan'
+			]);
 			return redirect()->to(base_url('/KreditController/'));
 		}
 	}

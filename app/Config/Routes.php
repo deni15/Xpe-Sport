@@ -36,12 +36,20 @@ $routes->get('/', 'DashboardController::index');
 $routes->get('/login', 'LoginController::index');
 $routes->post('/login/process', 'LoginController::process');
 $routes->get('/logout', 'LoginController::logout');
+//user route
 $routes->get('/pengguna/show/(:segment)', 'PenggunaController::show/$1');
 $routes->get('/pengguna/edit/(:segment)', 'PenggunaController::edit/$1');
-$routes->delete('/pengguna/(:num)','PenggunaController::delete/$1');
-$routes->delete('/produk/(:num)','ProdukController::delete/$1');
+$routes->get('/pengguna/delete/(:segment)', 'PenggunaController::delete/$1');
+// $routes->delete('/pengguna/(:num)','PenggunaController::delete/$1');
+// $routes->delete('/produk/(:num)','ProdukController::delete/$1');
+//produk route
 $routes->get('/produk/show/(:segment)', 'ProdukController::show/$1');
 $routes->get('/produk/edit/(:segment)', 'ProdukController::edit/$1');
+$routes->get('/produk/delete/(:segment)', 'ProdukController::delete/$1');
+
+//dashboard
+$routes->get('/dashboard/wa/(:segment)', 'DashboardController::notifWa/$1');
+
 
 /*
  * --------------------------------------------------------------------

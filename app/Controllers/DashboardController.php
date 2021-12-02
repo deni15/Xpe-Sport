@@ -30,7 +30,7 @@ class DashboardController extends BaseController
 			'title' => 'Home'
 		];
 		echo view('template/frontendTemplate/header',$data);
-		echo view('frontend/index');
+		echo view('frontend/index',$data);
 		echo view('template/frontendTemplate/footer');
 	}
 
@@ -81,6 +81,14 @@ class DashboardController extends BaseController
 		echo view('template/frontendTemplate/headerdetail',$data);
 		echo view('frontend/simulasi', $data);
 		echo view('template/frontendTemplate/footer');
+	}
+
+	public function notifWa($id)
+	{ 
+		$data = $this->ProdukModel->find($id);
+		//dd($data);
+		$str='Produk :'.$data->nama_produk.'%0D%0AType : '.$data->type_produk.'%0D%0AWarna : '.$data->warna.'%0D%0A%0D%0ASaya ingin tau lebih tentang produk ini%0D%0A%0D%0ATerimakasih banyak';
+		return redirect()->to('https://api.whatsapp.com/send?phone=6289659941572&text=XPE-SPORT%20MOBIL%20INDONESIA%0D%0A%0D%0AHi%20Salesman%20saya%20tertarik%20dengan%0D%0A%0D%0A'.$str.'',null, 'refresh');
 	}
 
 }

@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.semanticui.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
     
-    <!-- endinject -->
+    <!-- endinject --> 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- datatables -->
@@ -206,7 +207,7 @@
               </div>
             </li>
             <?php endif ; ?>
-            <?php if(session()->get('id_groups') == 'Operator') : ?>
+            <?php if(session()->get('id_groups') == 'Operator' || session()->get('id_groups') == 'Salesman' || session()->get('id_groups') == 'Branch Manager') : ?>
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#sales5" aria-expanded="false" aria-controls="sales5">
                 <span class="menu-title">Transaksi</span>
@@ -215,11 +216,11 @@
               </a>
               <div class="collapse" id="sales5">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/TransaksiController">Transaksi Pembelian</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/buttons.html">Data Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/buttons.html">Data Transaksi Cash</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/buttons.html">Data Transaksi Kredit</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/pages/ui-features/typography.html">Laporan Data Transaksi</a></li>
+                <?php if(session()->get('id_groups') == 'Operator') : ?>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/TransaksiController">Transaksi</a></li>
+                  <?php endif ; ?>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/TransaksiController/indexcash">Report Transaksi Cash</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php base_url()?>/TransaksiController/indexcredit">Report Transaksi Kredit</a></li>
                 </ul>
               </div>
             </li>

@@ -44,7 +44,7 @@
                             <span class="ms-auto badge bg-secondary"><?= $row->warna ?></span>
                             <h6 class="card-text text-secondary">Rp.<?= $row->harga ?></h6>
 
-                            <a href="" class="btn btn-success form-control"><i class="mdi mdi-whatsapp h5"></i></a>
+                            <a href="/dashboard/wa/<?=$row->id ?>" class="btn btn-success form-control"><i class="mdi mdi-whatsapp h5"></i></a>
                         </div>
                         </div>
                     </div>

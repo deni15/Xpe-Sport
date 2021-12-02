@@ -18,6 +18,7 @@
                         <?php echo session()->getFlashdata('success'); ?>
                     </div>
                     <?php endif; ?>
+                    <div class="swal" data-swal="<?= session()->getFlashdata('success') ?>"></div>
                   </div>
                 </div>
 
@@ -59,14 +60,15 @@
                                <div class="d-flex justify-content-center d-inline">
                                     <a href="/produk/show/<?= $row->id?>" class="btn btn-primary btn-sm"> <i class="mdi mdi-file-document"></i></a> &nbsp;&nbsp;
                                     <a href="/produk/edit/<?= $row->id?>" class="btn btn-secondary btn-sm"> <i class="mdi mdi-pencil"></i></a> &nbsp;&nbsp;
+                                    <a href="/produk/delete/<?= $row->id?>" class="btn btn-danger btn-sm hapus-data"> <i class="mdi mdi-delete-forever"></i></a> &nbsp;&nbsp;
                                     
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal<?= $row->id?>">
+                                    <!-- <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal<?= $row->id?>">
                                     <i class="mdi mdi-delete-forever"></i>
-                                    </button>
+                                    </button> -->
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal<?= $row->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <!-- <div class="modal fade" id="exampleModal<?= $row->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                           <div class="modal-header">
@@ -90,7 +92,7 @@
                                           </div>
                                         </div>
                                       </div>
-                                    </div>
+                                    </div> -->
                                </div>
                            </td>
                           </tr>
@@ -108,4 +110,6 @@
   $(document).ready(function() {
     $('#DataT').DataTable();
 } );
+
+
 </script>
